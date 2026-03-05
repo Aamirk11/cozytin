@@ -68,7 +68,7 @@ a{text-decoration:none;color:inherit;}
    ================================================ */
 .nav{
   position:sticky;top:0;z-index:700;
-  height:120px;
+  height:72px;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 24px;
   background:rgba(251,240,238,.97);
@@ -86,16 +86,16 @@ a{text-decoration:none;color:inherit;}
 
 /* Logo images */
 .nav-logo-img{
-  height:162px;width:auto;display:block;cursor:pointer;
-  /* negative margin trims the built-in whitespace top/bottom in the image */
-  margin:-22px 0;
+  /* images are now tightly cropped — no margin hacks needed */
+  height:56px;width:auto;display:block;cursor:pointer;
+  border-radius:8px;
 }
 .footer-logo-img{
-  width:min(88%, 460px);
+  /* tightly cropped white logo — no margin hacks needed */
+  width:min(80%, 340px);
   height:auto;
   display:block;
-  /* negative margin clips the dead whitespace baked into the image file */
-  margin:-18px auto 4px;
+  margin:0 auto 16px;
 }
 /* Keep .logo wrapper working */
 .logo{
@@ -558,13 +558,14 @@ a{text-decoration:none;color:inherit;}
 .black-mascot-wrap{
   position:relative;z-index:2;
   display:flex;align-items:flex-start;justify-content:center;
-  overflow:hidden;padding:0 20px;
+  /* overflow visible so mascot is never clipped */
+  padding:0 20px;
 }
 @media(min-width:800px){.black-mascot-wrap{padding-top:24px;}}
-/* On mobile: mascot floats ABOVE the text */
+/* On mobile: mascot floats ABOVE the text — no height cap */
 @media(max-width:799px){
-  .black-mascot-wrap{order:-1;padding:32px 20px 0;max-height:280px;}
-  .black-mascot{max-width:260px;}
+  .black-mascot-wrap{order:-1;padding:24px 20px 0;}
+  .black-mascot{max-width:300px;}
 }
 .black-mascot{
   width:100%;max-width:420px;
@@ -936,7 +937,7 @@ footer{
 
 /* ── PRODUCT PHOTO ── */
 .pd-photo{
-  position:sticky;top:120px;
+  position:sticky;top:72px;
   border-radius:var(--r-xl);overflow:hidden;
   background:#F2E4DE;aspect-ratio:1;
   box-shadow:0 48px 120px rgba(27,58,107,.13),0 8px 28px rgba(27,58,107,.07);
