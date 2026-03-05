@@ -1,0 +1,15 @@
+# Windows Zone.Identifier files
+*.Identifier
+*:Zone.Identifier
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Source files (keep only production-ready ones)
+cozytin_v3.html
+
+# Large unused images
+ChatGPT\ Image*
+ig\ story*
+promo\ product\ post.png
