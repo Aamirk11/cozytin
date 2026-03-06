@@ -1377,6 +1377,58 @@ footer{
 }
 .prod-card .btn-limited:hover{background:var(--gold2);transform:translateY(-2px);}
 
+/* ================================================
+   REVIEWS SECTION
+   ================================================ */
+.reviews-s{
+  background:var(--blush2);border-top:1px solid var(--border);
+  padding:64px 24px;
+}
+@media(min-width:640px){.reviews-s{padding:80px 48px;}}
+@media(min-width:1024px){.reviews-s{padding:88px 80px;}}
+.reviews-inner{max-width:1080px;margin:0 auto;}
+.reviews-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,48px);font-weight:700;
+  color:var(--navy);letter-spacing:-.5px;
+  margin-bottom:8px;text-align:center;line-height:1;
+}
+.reviews-sub{
+  font-size:14px;color:var(--muted);text-align:center;margin-bottom:40px;
+}
+.reviews-grid{
+  display:grid;grid-template-columns:1fr;gap:20px;
+}
+@media(min-width:640px){.reviews-grid{grid-template-columns:1fr 1fr;gap:20px;}}
+@media(min-width:960px){.reviews-grid{grid-template-columns:1fr 1fr 1fr;gap:20px;}}
+.review-card{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:28px 24px;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;
+}
+.review-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(27,58,107,.08);
+  border-color:rgba(27,58,107,.14);
+}
+.review-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
+.review-text{
+  font-size:14.5px;line-height:1.72;color:var(--muted);
+  font-style:italic;margin-bottom:18px;
+}
+.review-author{
+  display:flex;align-items:center;gap:10px;
+}
+.review-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--blush3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:var(--navy);
+  flex-shrink:0;
+}
+.review-name{font-size:13px;font-weight:700;color:var(--navy);}
+.review-detail{font-size:11px;color:var(--muted);font-weight:500;}
+
 /* Responsive hide */
 .sm-hide{display:none;}
 @media(min-width:640px){.sm-hide{display:flex;}}
@@ -1945,15 +1997,10 @@ footer{
       </div>
     </div>
     <div class="pd-main">
-      <!-- LEFT: photo + social proof -->
+      <!-- LEFT: photo -->
       <div>
         <div class="pd-photo rv left">
           <img src="new-product-matte.png" alt="The Chicago Classic Cookie Tin">
-        </div>
-        <!-- Social proof under photo -->
-        <div class="pd-proof rv">
-          <span class="stars">★★★★★</span>
-          <span class="pd-proof-t">4.9 · Loved across Chicago</span>
         </div>
       </div>
 
@@ -2074,6 +2121,49 @@ footer{
         <span class="pd-feat-icon">🏙️</span>
         <div class="pd-feat-title">Local &amp; Homemade</div>
         <p class="pd-feat-body">We don't ship nationwide — pickup is part of the experience. Fresh from our Morton Grove kitchen, straight to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-s">
+    <div class="reviews-inner">
+      <h2 class="reviews-heading rv">What people are saying</h2>
+      <p class="reviews-sub rv d1">Real feedback from real customers.</p>
+      <div class="reviews-grid">
+        <div class="review-card rv">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"These cookies are unreal. Still warm when I picked them up — the chocolate chips were melting. My whole family finished the tin in one sitting."</p>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sarah M.</div>
+              <div class="review-detail">Morton Grove, IL</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card rv d1">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I've tried a lot of cookie brands and nothing comes close. You can actually taste the butter and vanilla. This is what homemade is supposed to taste like."</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div>
+              <div class="review-name">Amir K.</div>
+              <div class="review-detail">Skokie, IL</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card rv d2">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Bought one for a friend's birthday and ended up ordering another for myself. The tin is beautiful too — I'm keeping it. Already signed up for the next drop."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-name">Maya R.</div>
+              <div class="review-detail">Chicago, IL</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
