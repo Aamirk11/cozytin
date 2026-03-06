@@ -46,6 +46,34 @@ a{text-decoration:none;color:inherit;}
 .page.active{display:block!important;}
 
 /* ================================================
+   SOCIAL SUB-BAR (below nav)
+   ================================================ */
+.subnav{
+  background:var(--blush2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:7px 24px;
+  font-size:12.5px;
+}
+.subnav-email{
+  color:var(--muted);font-weight:600;
+  text-decoration:none;
+  transition:color .15s;
+  letter-spacing:.2px;
+}
+.subnav-email:hover{color:var(--navy);}
+.subnav-div{width:1px;height:14px;background:var(--border);}
+.subnav-soc{
+  display:flex;align-items:center;gap:12px;
+}
+.subnav-soc a{
+  color:var(--muted);transition:color .15s;
+  display:flex;align-items:center;
+}
+.subnav-soc a:hover{color:var(--navy);}
+.subnav-soc svg{width:14px;height:14px;}
+
+/* ================================================
    ANNOUNCEMENT BAR
    ================================================ */
 .ann{
@@ -1323,9 +1351,9 @@ footer{
         <p class="spot-desc">Hand-baked chocolate chip cookies packed into one beautiful tin — golden edges, a soft gooey center, and chocolate chips in every bite. Made completely from scratch, every time.</p>
         <div class="spot-attrs">
           <div class="sattr"><div class="sattr-v">$30</div><div class="sattr-l">Per Tin</div></div>
-          <div class="sattr"><div class="sattr-v">9</div><div class="sattr-l">Cookies</div></div>
-          <div class="sattr"><div class="sattr-v">Same Day</div><div class="sattr-l">Delivery</div></div>
-          <div class="sattr"><div class="sattr-v">Free</div><div class="sattr-l">Shipping</div></div>
+          <div class="sattr"><div class="sattr-v">Scratch</div><div class="sattr-l">Every Batch</div></div>
+          <div class="sattr"><div class="sattr-v">Pickup</div><div class="sattr-l">Morton Grove</div></div>
+          <div class="sattr"><div class="sattr-v">🤎</div><div class="sattr-l">Homemade</div></div>
         </div>
         <div class="spot-btns">
           <button class="btn-soldout">Currently Sold Out</button>
@@ -1699,6 +1727,18 @@ footer{
       </button>
     </div>
   </nav>
+  <div class="subnav">
+    <a class="subnav-email" href="mailto:thecozytin@gmail.com">thecozytin@gmail.com</a>
+    <div class="subnav-div"></div>
+    <div class="subnav-soc">
+      <a href="https://www.instagram.com/thecozytin/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@cozy.tin" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77-.39 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.03-7.29a8.24 8.24 0 0 0 4.84 1.55V6.12a4.85 4.85 0 0 1-1.04-.43z"/></svg>
+      </a>
+    </div>
+  </div>
 
   <div class="pd-page">
     <div style="max-width:1240px;margin:0 auto;padding:0 24px;">
@@ -1730,23 +1770,23 @@ footer{
           <!-- Stat pills — always visible -->
           <div class="pd-stats">
             <div class="pd-stat">
-              <div class="pd-stat-n">9</div>
-              <div class="pd-stat-l">Cookies</div>
-            </div>
-            <div class="pd-stat-div"></div>
-            <div class="pd-stat">
               <div class="pd-stat-n">$30</div>
               <div class="pd-stat-l">Per Tin</div>
             </div>
             <div class="pd-stat-div"></div>
             <div class="pd-stat">
-              <div class="pd-stat-n">Free</div>
-              <div class="pd-stat-l">Delivery</div>
+              <div class="pd-stat-n">Scratch</div>
+              <div class="pd-stat-l">Every Batch</div>
             </div>
             <div class="pd-stat-div"></div>
             <div class="pd-stat">
               <div class="pd-stat-n">Pickup</div>
               <div class="pd-stat-l">Morton Grove</div>
+            </div>
+            <div class="pd-stat-div"></div>
+            <div class="pd-stat">
+              <div class="pd-stat-n">🤎</div>
+              <div class="pd-stat-l">Homemade</div>
             </div>
           </div>
 
