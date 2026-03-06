@@ -566,22 +566,27 @@ a{text-decoration:none;color:inherit;}
 }
 .brownie-body strong{color:rgba(255,255,255,.82);font-weight:600;}
 .brownie-imgs{
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  display:grid;
+  grid-template-columns:1fr;gap:16px;
 }
-@media(max-width:899px){.brownie-imgs{max-width:500px;margin:0 auto;}}
+@media(min-width:900px){
+  .brownie-imgs{grid-template-columns:1fr 1fr;gap:14px;}
+}
 .brownie-img-wrap{
   border-radius:var(--r-lg);overflow:hidden;
   position:relative;
 }
-.brownie-img-wrap:first-child{
-  margin-top:32px;
+@media(min-width:900px){
+  .brownie-img-wrap:first-child{margin-top:32px;}
 }
-@media(max-width:899px){.brownie-img-wrap:first-child{margin-top:0;}}
 .brownie-img-wrap img{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
+  width:100%;display:block;
+  object-fit:cover;
   transition:transform .7s cubic-bezier(.4,0,.2,1);
-  aspect-ratio:3/4;
+  aspect-ratio:4/3;
+}
+@media(min-width:900px){
+  .brownie-img-wrap img{aspect-ratio:3/4;}
 }
 .brownie-img-wrap:hover img{transform:scale(1.04);}
 
@@ -1463,11 +1468,11 @@ footer{
       <div class="brownie-text rv left">
         <div class="brownie-ey">Coming Soon</div>
         <h2 class="brownie-h">
-          New Brownie Content<br>
-          <em>Something new is brewing.</em>
+          The Brownie Tin.<br>
+          <em>Fudgy. Gooey. Marshmallow.</em>
         </h2>
         <p class="brownie-body">
-          <strong>Our next creation is almost ready.</strong> Rich, fudgy, and made with the same love as every CozyTin. Get on the list and be the first to know when it drops.
+          <strong>Rich fudgy brownies loaded with toasted marshmallow</strong> — packed into the same signature CozyTin you already love. Made from scratch, just like everything we do. Get on the list to be first in line.
         </p>
         <button class="btn-g rv" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
           🍫 Get Early Access
@@ -1475,10 +1480,10 @@ footer{
       </div>
       <div class="brownie-imgs rv right">
         <div class="brownie-img-wrap">
-          <img src="brownie-2.jpg" alt="CozyTin Brownie Tin — Coming Soon">
+          <img src="brownie-2.jpg" alt="CozyTin Marshmallow Brownie Tin">
         </div>
         <div class="brownie-img-wrap">
-          <img src="brownie-1.jpg" alt="CozyTin Gooey Brownie — Coming Soon">
+          <img src="brownie-1.jpg" alt="CozyTin Gooey Marshmallow Brownie">
         </div>
       </div>
     </div>
