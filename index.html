@@ -2100,18 +2100,36 @@ function bellClick(btn) {
 
 /* ──── FORM ──── */
 function submitForm() {
-  const name  = (document.getElementById('f-name')  || {}).value || '';
-  const email = (document.getElementById('f-email') || {}).value || '';
-  const phone = '';
-  if (!name.trim() || !email.includes('@')) {
-    showToast('Please add your name and email ✍️');
-    return;
-  }
-  const first = name.trim().split(' ')[0];
-  showToast(`You're in${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
-  ['f-name','f-email'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
+  const nameEl  = document.getElementById('f-name');
+  const emailEl = document.getElementById('f-email');
+  const name    = (nameEl  || {}).value || '';
+  const email   = (emailEl || {}).value || '';
+
+  if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
+  if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
+
+  const btn = document.querySelector('.fsub');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+  fetch('https://formspree.io/f/mqeykzoo', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name.trim(), email: email.trim() })
+  })
+  .then(res => {
+    if (res.ok) {
+      const first = name.trim().split(' ')[0];
+      showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
+      if (nameEl)  nameEl.value  = '';
+      if (emailEl) emailEl.value = '';
+      if (btn) { btn.disabled = false; btn.textContent = 'Join the List →'; }
+    } else {
+      return res.json().then(data => { throw new Error(data.error || 'Submission failed'); });
+    }
+  })
+  .catch(() => {
+    showToast('Something went wrong — please email us at thecozytin@gmail.com');
+    if (btn) { btn.disabled = false; btn.textContent = 'Join the List →'; }
   });
 }
 
