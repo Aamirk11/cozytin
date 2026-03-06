@@ -2108,29 +2108,20 @@ function submitForm() {
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
 
-  const btn = document.querySelector('.fsub');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  // Show success immediately — don't make them wait for the network
+  const first = name.trim().split(' ')[0];
+  showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
+  if (nameEl)  nameEl.value = '';
+  if (emailEl) emailEl.value = '';
 
+  // Send to Formspree in the background
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({ name: name.trim(), email: email.trim() })
   })
-  .then(res => {
-    if (res.ok) {
-      const first = name.trim().split(' ')[0];
-      showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
-      if (nameEl)  nameEl.value  = '';
-      if (emailEl) emailEl.value = '';
-      if (btn) { btn.disabled = false; btn.textContent = 'Join the List →'; }
-    } else {
-      return res.json().then(data => { throw new Error(data.error || 'Submission failed'); });
-    }
-  })
-  .catch(() => {
-    showToast('Something went wrong — please email us at thecozytin@gmail.com');
-    if (btn) { btn.disabled = false; btn.textContent = 'Join the List →'; }
-  });
+  .then(res => { if (!res.ok) throw new Error(); })
+  .catch(() => showToast('Something went wrong — please email thecozytin@gmail.com'));
 }
 
 /* ──── ACCORDION ──── */
