@@ -520,6 +520,72 @@ a{text-decoration:none;color:inherit;}
 .hiw-body{font-size:14px;color:var(--muted);line-height:1.68;}
 
 /* ================================================
+   HOME — BROWNIE COMING SOON TEASER
+   ================================================ */
+.brownie-s{
+  background:#0d0d0d;
+  padding:88px 24px;
+  overflow:hidden;
+  position:relative;
+}
+@media(min-width:640px){.brownie-s{padding:104px 48px;}}
+@media(min-width:1024px){.brownie-s{padding:120px 80px;}}
+.brownie-s::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(139,69,19,.18),transparent 65%);
+  pointer-events:none;
+}
+.brownie-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:56px;
+  align-items:center;position:relative;z-index:1;
+}
+@media(min-width:900px){.brownie-inner{grid-template-columns:1fr 1fr;gap:72px;}}
+.brownie-text{}
+.brownie-ey{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.brownie-ey::before{content:'';width:22px;height:2px;background:var(--gold);flex-shrink:0;}
+.brownie-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,7vw,72px);
+  font-weight:700;color:#fff;
+  line-height:.9;letter-spacing:-2px;
+  margin-bottom:22px;
+}
+.brownie-h em{
+  display:block;font-style:italic;font-weight:400;
+  color:rgba(255,255,255,.38);font-size:.62em;letter-spacing:-1px;
+}
+.brownie-body{
+  font-size:16px;line-height:1.8;
+  color:rgba(255,255,255,.48);
+  max-width:400px;margin-bottom:32px;
+}
+.brownie-body strong{color:rgba(255,255,255,.82);font-weight:600;}
+.brownie-imgs{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+@media(max-width:899px){.brownie-imgs{max-width:500px;margin:0 auto;}}
+.brownie-img-wrap{
+  border-radius:var(--r-lg);overflow:hidden;
+  position:relative;
+}
+.brownie-img-wrap:first-child{
+  margin-top:32px;
+}
+@media(max-width:899px){.brownie-img-wrap:first-child{margin-top:0;}}
+.brownie-img-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+  aspect-ratio:3/4;
+}
+.brownie-img-wrap:hover img{transform:scale(1.04);}
+
+/* ================================================
    HOME — BLACK SECTION (brand story + mascot)
    ================================================ */
 .black-s{
@@ -1386,6 +1452,33 @@ footer{
           <span class="hiw-icon">🚪</span>
           <div class="hiw-title">Pickup Warm</div>
           <p class="hiw-body">Swing by our Morton Grove kitchen and pick up your fresh, warm tin. Ready when you are — no waiting around.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BROWNIE COMING SOON TEASER -->
+  <section class="brownie-s">
+    <div class="brownie-inner">
+      <div class="brownie-text rv left">
+        <div class="brownie-ey">Coming Soon</div>
+        <h2 class="brownie-h">
+          New Brownie Content<br>
+          <em>Something new is brewing.</em>
+        </h2>
+        <p class="brownie-body">
+          <strong>Our next creation is almost ready.</strong> Rich, fudgy, and made with the same love as every CozyTin. Get on the list and be the first to know when it drops.
+        </p>
+        <button class="btn-g rv" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
+          🍫 Get Early Access
+        </button>
+      </div>
+      <div class="brownie-imgs rv right">
+        <div class="brownie-img-wrap">
+          <img src="brownie-2.jpg" alt="CozyTin Brownie Tin — Coming Soon">
+        </div>
+        <div class="brownie-img-wrap">
+          <img src="brownie-1.jpg" alt="CozyTin Gooey Brownie — Coming Soon">
         </div>
       </div>
     </div>
