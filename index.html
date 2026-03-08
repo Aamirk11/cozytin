@@ -2258,11 +2258,9 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs -->
-          <div class="pd-actions">
-            <button class="btn-notify-lg" style="background:var(--gold);color:#0d0d0d;box-shadow:0 6px 24px rgba(201,162,39,.3);" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-              🍫 Order Now — Limited Quantity
-            </button>
+          <!-- CTAs — Shopify Buy Button -->
+          <div class="pd-actions shopify-buy-btn-wrap">
+            <div id="shopify-buy-brownie"></div>
           </div>
 
           <!-- Accordion -->
@@ -2327,10 +2325,8 @@ footer{
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Grab your tin<br><em>before they're gone.</em></h2>
-      <p class="pd-cta-p">Limited quantity this drop. Fill in your email and we'll confirm your order.</p>
-      <button class="btn-notify-lg" style="max-width:380px;margin:0 auto;background:var(--gold);color:#0d0d0d;box-shadow:0 6px 24px rgba(201,162,39,.3);" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-        🍫 Order Now
-      </button>
+      <p class="pd-cta-p">Limited quantity this drop. Grab yours now.</p>
+      <div id="shopify-buy-brownie-bottom" style="max-width:380px;margin:0 auto;"></div>
     </div>
   </section>
   </div>
@@ -2380,6 +2376,10 @@ function goPage(name) {
     pg.classList.add('active');
     window.scrollTo({top: 0, behavior: 'smooth'});
     setTimeout(initObserver, 120);
+    /* Render Shopify Buy Buttons on the newly visible page */
+    setTimeout(function() {
+      if (window._shopifyRenderBuyButtons) window._shopifyRenderBuyButtons();
+    }, 200);
   }
 }
 
@@ -2497,30 +2497,35 @@ document.addEventListener('DOMContentLoaded', () => {
 <script type="text/javascript">
 (function () {
   var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  var shopifyUI = null;
+  var componentsCreated = {};
 
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); }
-    else { loadScript(); }
+  /* Load the SDK script */
+  if (window.ShopifyBuy && window.ShopifyBuy.UI) {
+    shopifyReady();
   } else {
-    loadScript();
-  }
-
-  function loadScript() {
     var script = document.createElement('script');
     script.async = true;
     script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
+    script.onload = shopifyReady;
+    document.head.appendChild(script);
   }
 
-  function ShopifyBuyInit() {
+  function shopifyReady() {
     var client = ShopifyBuy.buildClient({
       domain: 'njen1z-fw.myshopify.com',
       storefrontAccessToken: 'feca5be90bb1fc1bed660af49f095a7f',
     });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      shopifyUI = ui;
+      /* Render buttons for whichever page is currently active */
+      renderBuyButtons();
+    });
+  }
 
-    /* ── Shared button + cart styling ── */
-    var btnStyles = {
+  /* ── Shared styling for all Buy Buttons ── */
+  function makeOptions(buttonText) {
+    return {
       "product": {
         "styles": {
           "product": { "text-align": "left" },
@@ -2549,7 +2554,7 @@ document.addEventListener('DOMContentLoaded', () => {
           "button": true,
           "buttonWithQuantity": false
         },
-        "text": { "button": "🍪 Add to Cart — $30" }
+        "text": { "button": buttonText }
       },
       "cart": {
         "styles": {
@@ -2591,31 +2596,35 @@ document.addEventListener('DOMContentLoaded', () => {
         "text": { "button": "Add to cart" }
       }
     };
+  }
 
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      /* Chicago Classic — main product page CTA */
-      var classicNode = document.getElementById('shopify-buy-classic');
-      if (classicNode) {
-        ui.createComponent('product', {
-          id: '8771766845492',
-          node: classicNode,
-          moneyFormat: '%24%7B%7Bamount%7D%7D',
-          options: btnStyles
-        });
-      }
+  /* Products config: { divId: { shopifyId, buttonText } } */
+  var products = {
+    'shopify-buy-classic':        { id: '8771766845492', text: '🍪 Add to Cart — $30' },
+    'shopify-buy-classic-bottom': { id: '8771766845492', text: '🍪 Add to Cart — $30' },
+    'shopify-buy-brownie':        { id: '8772607737908', text: '🍫 Add to Cart — $30' },
+    'shopify-buy-brownie-bottom': { id: '8772607737908', text: '🍫 Add to Cart — $30' }
+  };
 
-      /* Chicago Classic — bottom CTA band */
-      var classicBottom = document.getElementById('shopify-buy-classic-bottom');
-      if (classicBottom) {
-        ui.createComponent('product', {
-          id: '8771766845492',
-          node: classicBottom,
+  /* Create components for visible, non-empty nodes */
+  function renderBuyButtons() {
+    if (!shopifyUI) return;
+    Object.keys(products).forEach(function (divId) {
+      var node = document.getElementById(divId);
+      if (node && !componentsCreated[divId]) {
+        componentsCreated[divId] = true;
+        shopifyUI.createComponent('product', {
+          id: products[divId].id,
+          node: node,
           moneyFormat: '%24%7B%7Bamount%7D%7D',
-          options: btnStyles
+          options: makeOptions(products[divId].text)
         });
       }
     });
   }
+
+  /* Expose so goPage() can trigger re-render */
+  window._shopifyRenderBuyButtons = renderBuyButtons;
 })();
 </script>
 </body>
