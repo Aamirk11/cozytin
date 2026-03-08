@@ -1368,6 +1368,12 @@ footer{
 }
 .prod-card .btn-limited:hover{background:var(--gold2);transform:translateY(-2px);}
 
+/* ================================================
+   SHOPIFY BUY BUTTON OVERRIDES
+   ================================================ */
+.shopify-buy-btn-wrap{margin-bottom:28px;}
+.shopify-buy-btn-wrap iframe{border-radius:var(--r-md)!important;}
+
 /* Responsive hide */
 .sm-hide{display:none;}
 @media(min-width:640px){.sm-hide{display:flex;}}
@@ -2020,11 +2026,9 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs -->
-          <div class="pd-actions">
-            <button class="btn-notify-lg" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-              🍪 Order Now — Limited Quantity
-            </button>
+          <!-- CTAs — Shopify Buy Button -->
+          <div class="pd-actions shopify-buy-btn-wrap">
+            <div id="shopify-buy-classic"></div>
           </div>
 
           <!-- Single accordion: Reheating Tips only -->
@@ -2085,15 +2089,12 @@ footer{
     </div>
   </section>
 
-  <!-- NOTIFY CTA BAND -->
+  <!-- CTA BAND -->
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Order your tin<br><em>today.</em></h2>
-      <p class="pd-cta-p">Fill in your email and we'll let you know as soon as new tins are available.</p>
-      <button class="btn-notify-lg" style="max-width:340px;margin:0 auto;" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        Get Drop Alerts
-      </button>
+      <p class="pd-cta-p">Limited quantity — grab yours before they're gone.</p>
+      <div id="shopify-buy-classic-bottom" style="max-width:380px;margin:0 auto;"></div>
     </div>
   </section>
   </div>
@@ -2490,6 +2491,132 @@ document.addEventListener('DOMContentLoaded', () => {
   initObserver();
   animateDropNum();
 });
+</script>
+
+<!-- ──── SHOPIFY BUY BUTTON SDK ──── -->
+<script type="text/javascript">
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); }
+    else { loadScript(); }
+  } else {
+    loadScript();
+  }
+
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'njen1z-fw.myshopify.com',
+      storefrontAccessToken: 'feca5be90bb1fc1bed660af49f095a7f',
+    });
+
+    /* ── Shared button + cart styling ── */
+    var btnStyles = {
+      "product": {
+        "styles": {
+          "product": { "text-align": "left" },
+          "title": { "display": "none" },
+          "price": { "display": "none" },
+          "compareAt": { "display": "none" },
+          "description": { "display": "none" },
+          "button": {
+            "font-family": "Outfit, sans-serif",
+            "font-size": "15px",
+            "font-weight": "700",
+            "padding": "17px 28px",
+            "background-color": "#1B3A6B",
+            "border-radius": "14px",
+            "color": "#fff",
+            "width": "100%",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          }
+        },
+        "contents": {
+          "img": false,
+          "title": false,
+          "price": false,
+          "description": false,
+          "button": true,
+          "buttonWithQuantity": false
+        },
+        "text": { "button": "🍪 Add to Cart — $30" }
+      },
+      "cart": {
+        "styles": {
+          "button": {
+            "font-family": "Outfit, sans-serif",
+            "font-size": "15px",
+            "font-weight": "700",
+            "padding": "16px 28px",
+            "background-color": "#1B3A6B",
+            "border-radius": "14px",
+            "color": "#fff",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          }
+        },
+        "text": { "total": "Subtotal", "button": "Checkout" },
+        "popup": false
+      },
+      "toggle": {
+        "styles": {
+          "toggle": {
+            "font-family": "Outfit, sans-serif",
+            "background-color": "#1B3A6B",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          },
+          "count": { "font-size": "14px" }
+        }
+      },
+      "option": {},
+      "productSet": {},
+      "modalProduct": {
+        "contents": {
+          "img": false,
+          "imgWithCarousel": true,
+          "button": false,
+          "buttonWithQuantity": true
+        },
+        "text": { "button": "Add to cart" }
+      }
+    };
+
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      /* Chicago Classic — main product page CTA */
+      var classicNode = document.getElementById('shopify-buy-classic');
+      if (classicNode) {
+        ui.createComponent('product', {
+          id: '8771766845492',
+          node: classicNode,
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: btnStyles
+        });
+      }
+
+      /* Chicago Classic — bottom CTA band */
+      var classicBottom = document.getElementById('shopify-buy-classic-bottom');
+      if (classicBottom) {
+        ui.createComponent('product', {
+          id: '8771766845492',
+          node: classicBottom,
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: btnStyles
+        });
+      }
+    });
+  }
+})();
 </script>
 </body>
 </html>
