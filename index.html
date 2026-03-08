@@ -1048,15 +1048,6 @@ footer{
 .pd-photo:hover img{transform:scale(1.07);}
 @media(max-width:959px){.pd-photo{position:static;}}
 
-/* Social proof tag under photo */
-.pd-proof{
-  display:flex;align-items:center;gap:10px;
-  margin-top:16px;padding:14px 18px;
-  background:#fff;border:1px solid var(--border);border-radius:12px;
-}
-.pd-proof-t{font-size:13px;font-weight:600;color:var(--muted);}
-.stars{color:var(--gold);font-size:16px;letter-spacing:2px;}
-.rcount{font-size:13px;color:var(--muted);font-weight:500;}
 
 /* ── INFO COLUMN ── */
 .pd-info-col{padding-top:8px;}
@@ -1378,56 +1369,10 @@ footer{
 .prod-card .btn-limited:hover{background:var(--gold2);transform:translateY(-2px);}
 
 /* ================================================
-   REVIEWS SECTION
+   SHOPIFY BUY BUTTON OVERRIDES
    ================================================ */
-.reviews-s{
-  background:var(--blush2);border-top:1px solid var(--border);
-  padding:64px 24px;
-}
-@media(min-width:640px){.reviews-s{padding:80px 48px;}}
-@media(min-width:1024px){.reviews-s{padding:88px 80px;}}
-.reviews-inner{max-width:1080px;margin:0 auto;}
-.reviews-heading{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(32px,5vw,48px);font-weight:700;
-  color:var(--navy);letter-spacing:-.5px;
-  margin-bottom:8px;text-align:center;line-height:1;
-}
-.reviews-sub{
-  font-size:14px;color:var(--muted);text-align:center;margin-bottom:40px;
-}
-.reviews-grid{
-  display:grid;grid-template-columns:1fr;gap:20px;
-}
-@media(min-width:640px){.reviews-grid{grid-template-columns:1fr 1fr;gap:20px;}}
-@media(min-width:960px){.reviews-grid{grid-template-columns:1fr 1fr 1fr;gap:20px;}}
-.review-card{
-  background:#fff;border:1.5px solid var(--border);
-  border-radius:var(--r-lg);padding:28px 24px;
-  transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;
-}
-.review-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(27,58,107,.08);
-  border-color:rgba(27,58,107,.14);
-}
-.review-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
-.review-text{
-  font-size:14.5px;line-height:1.72;color:var(--muted);
-  font-style:italic;margin-bottom:18px;
-}
-.review-author{
-  display:flex;align-items:center;gap:10px;
-}
-.review-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--blush3);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;color:var(--navy);
-  flex-shrink:0;
-}
-.review-name{font-size:13px;font-weight:700;color:var(--navy);}
-.review-detail{font-size:11px;color:var(--muted);font-weight:500;}
+.shopify-buy-btn-wrap{margin-bottom:28px;}
+.shopify-buy-btn-wrap iframe{border-radius:var(--r-md)!important;}
 
 /* Responsive hide */
 .sm-hide{display:none;}
@@ -1678,7 +1623,7 @@ footer{
     <div class="contact-inner rv">
       <div class="ey">Be First</div>
       <h2 class="contact-h">Get Early Access</h2>
-      <p class="contact-sub">Drop your email below and we'll reach out when new tins are ready. No spam — ever.</p>
+      <p class="contact-sub">Drop your info below and we'll reach out when new tins are ready. No spam — ever.</p>
 
       <div class="fg two">
         <div>
@@ -1688,6 +1633,12 @@ footer{
         <div>
           <label class="fl" for="f-email">Email Address</label>
           <input class="fi" id="f-email" type="email" placeholder="you@email.com">
+        </div>
+      </div>
+      <div class="fg" style="margin-top:14px;">
+        <div>
+          <label class="fl" for="f-phone">Phone Number <span style="font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></label>
+          <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
         </div>
       </div>
       <button class="fsub" onclick="submitForm()">Join the List →</button>
@@ -2075,11 +2026,9 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs -->
-          <div class="pd-actions">
-            <button class="btn-notify-lg" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-              🍪 Order Now — Limited Quantity
-            </button>
+          <!-- CTAs — Shopify Buy Button -->
+          <div class="pd-actions shopify-buy-btn-wrap">
+            <div id="shopify-buy-classic"></div>
           </div>
 
           <!-- Single accordion: Reheating Tips only -->
@@ -2125,49 +2074,6 @@ footer{
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="reviews-s">
-    <div class="reviews-inner">
-      <h2 class="reviews-heading rv">What people are saying</h2>
-      <p class="reviews-sub rv d1">Real feedback from real customers.</p>
-      <div class="reviews-grid">
-        <div class="review-card rv">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"These cookies are unreal. Still warm when I picked them up — the chocolate chips were melting. My whole family finished the tin in one sitting."</p>
-          <div class="review-author">
-            <div class="review-avatar">S</div>
-            <div>
-              <div class="review-name">Sarah M.</div>
-              <div class="review-detail">Morton Grove, IL</div>
-            </div>
-          </div>
-        </div>
-        <div class="review-card rv d1">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"I've tried a lot of cookie brands and nothing comes close. You can actually taste the butter and vanilla. This is what homemade is supposed to taste like."</p>
-          <div class="review-author">
-            <div class="review-avatar">A</div>
-            <div>
-              <div class="review-name">Amir K.</div>
-              <div class="review-detail">Skokie, IL</div>
-            </div>
-          </div>
-        </div>
-        <div class="review-card rv d2">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Bought one for a friend's birthday and ended up ordering another for myself. The tin is beautiful too — I'm keeping it. Already signed up for the next drop."</p>
-          <div class="review-author">
-            <div class="review-avatar">M</div>
-            <div>
-              <div class="review-name">Maya R.</div>
-              <div class="review-detail">Chicago, IL</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FOUNDER QUOTE + SPECS — black section -->
   <section class="pd-quote-s">
     <div class="pd-quote-inner rv">
@@ -2183,15 +2089,12 @@ footer{
     </div>
   </section>
 
-  <!-- NOTIFY CTA BAND -->
+  <!-- CTA BAND -->
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Order your tin<br><em>today.</em></h2>
-      <p class="pd-cta-p">Fill in your email and we'll let you know as soon as new tins are available.</p>
-      <button class="btn-notify-lg" style="max-width:340px;margin:0 auto;" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        Get Drop Alerts
-      </button>
+      <p class="pd-cta-p">Limited quantity — grab yours before they're gone.</p>
+      <div id="shopify-buy-classic-bottom" style="max-width:380px;margin:0 auto;"></div>
     </div>
   </section>
   </div>
@@ -2355,11 +2258,9 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs -->
-          <div class="pd-actions">
-            <button class="btn-notify-lg" style="background:var(--gold);color:#0d0d0d;box-shadow:0 6px 24px rgba(201,162,39,.3);" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-              🍫 Order Now — Limited Quantity
-            </button>
+          <!-- CTAs — Shopify Buy Button -->
+          <div class="pd-actions shopify-buy-btn-wrap">
+            <div id="shopify-buy-brownie"></div>
           </div>
 
           <!-- Accordion -->
@@ -2424,10 +2325,8 @@ footer{
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Grab your tin<br><em>before they're gone.</em></h2>
-      <p class="pd-cta-p">Limited quantity this drop. Fill in your email and we'll confirm your order.</p>
-      <button class="btn-notify-lg" style="max-width:380px;margin:0 auto;background:var(--gold);color:#0d0d0d;box-shadow:0 6px 24px rgba(201,162,39,.3);" onclick="bellClick(this);goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),120)">
-        🍫 Order Now
-      </button>
+      <p class="pd-cta-p">Limited quantity this drop. Grab yours now.</p>
+      <div id="shopify-buy-brownie-bottom" style="max-width:380px;margin:0 auto;"></div>
     </div>
   </section>
   </div>
@@ -2477,6 +2376,10 @@ function goPage(name) {
     pg.classList.add('active');
     window.scrollTo({top: 0, behavior: 'smooth'});
     setTimeout(initObserver, 120);
+    /* Render Shopify Buy Buttons on the newly visible page */
+    setTimeout(function() {
+      if (window._shopifyRenderBuyButtons) window._shopifyRenderBuyButtons();
+    }, 200);
   }
 }
 
@@ -2521,8 +2424,10 @@ function bellClick(btn) {
 function submitForm() {
   const nameEl  = document.getElementById('f-name');
   const emailEl = document.getElementById('f-email');
+  const phoneEl = document.getElementById('f-phone');
   const name    = (nameEl  || {}).value || '';
   const email   = (emailEl || {}).value || '';
+  const phone   = (phoneEl || {}).value || '';
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
@@ -2532,12 +2437,15 @@ function submitForm() {
   showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
   if (nameEl)  nameEl.value = '';
   if (emailEl) emailEl.value = '';
+  if (phoneEl) phoneEl.value = '';
 
   // Send to Formspree in the background
+  const data = { name: name.trim(), email: email.trim() };
+  if (phone.trim()) data.phone = phone.trim();
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name.trim(), email: email.trim() })
+    body: JSON.stringify(data)
   })
   .then(res => { if (!res.ok) throw new Error(); })
   .catch(() => showToast('Something went wrong — please email thecozytin@gmail.com'));
@@ -2583,6 +2491,141 @@ document.addEventListener('DOMContentLoaded', () => {
   initObserver();
   animateDropNum();
 });
+</script>
+
+<!-- ──── SHOPIFY BUY BUTTON SDK ──── -->
+<script type="text/javascript">
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  var shopifyUI = null;
+  var componentsCreated = {};
+
+  /* Load the SDK script */
+  if (window.ShopifyBuy && window.ShopifyBuy.UI) {
+    shopifyReady();
+  } else {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    script.onload = shopifyReady;
+    document.head.appendChild(script);
+  }
+
+  function shopifyReady() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'njen1z-fw.myshopify.com',
+      storefrontAccessToken: 'feca5be90bb1fc1bed660af49f095a7f',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      shopifyUI = ui;
+      /* Render buttons for whichever page is currently active */
+      renderBuyButtons();
+    });
+  }
+
+  /* ── Shared styling for all Buy Buttons ── */
+  function makeOptions(buttonText) {
+    return {
+      "product": {
+        "styles": {
+          "product": { "text-align": "left" },
+          "title": { "display": "none" },
+          "price": { "display": "none" },
+          "compareAt": { "display": "none" },
+          "description": { "display": "none" },
+          "button": {
+            "font-family": "Outfit, sans-serif",
+            "font-size": "15px",
+            "font-weight": "700",
+            "padding": "17px 28px",
+            "background-color": "#1B3A6B",
+            "border-radius": "14px",
+            "color": "#fff",
+            "width": "100%",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          }
+        },
+        "contents": {
+          "img": false,
+          "title": false,
+          "price": false,
+          "description": false,
+          "button": true,
+          "buttonWithQuantity": false
+        },
+        "text": { "button": buttonText }
+      },
+      "cart": {
+        "styles": {
+          "button": {
+            "font-family": "Outfit, sans-serif",
+            "font-size": "15px",
+            "font-weight": "700",
+            "padding": "16px 28px",
+            "background-color": "#1B3A6B",
+            "border-radius": "14px",
+            "color": "#fff",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          }
+        },
+        "text": { "total": "Subtotal", "button": "Checkout" },
+        "popup": false
+      },
+      "toggle": {
+        "styles": {
+          "toggle": {
+            "font-family": "Outfit, sans-serif",
+            "background-color": "#1B3A6B",
+            ":hover": { "background-color": "#254F8F" },
+            ":focus": { "background-color": "#254F8F" }
+          },
+          "count": { "font-size": "14px" }
+        }
+      },
+      "option": {},
+      "productSet": {},
+      "modalProduct": {
+        "contents": {
+          "img": false,
+          "imgWithCarousel": true,
+          "button": false,
+          "buttonWithQuantity": true
+        },
+        "text": { "button": "Add to cart" }
+      }
+    };
+  }
+
+  /* Products config: { divId: { shopifyId, buttonText } } */
+  var products = {
+    'shopify-buy-classic':        { id: '8771766845492', text: '🍪 Add to Cart — $30' },
+    'shopify-buy-classic-bottom': { id: '8771766845492', text: '🍪 Add to Cart — $30' },
+    'shopify-buy-brownie':        { id: '8772607737908', text: '🍫 Add to Cart — $30' },
+    'shopify-buy-brownie-bottom': { id: '8772607737908', text: '🍫 Add to Cart — $30' }
+  };
+
+  /* Create components for visible, non-empty nodes */
+  function renderBuyButtons() {
+    if (!shopifyUI) return;
+    Object.keys(products).forEach(function (divId) {
+      var node = document.getElementById(divId);
+      if (node && !componentsCreated[divId]) {
+        componentsCreated[divId] = true;
+        shopifyUI.createComponent('product', {
+          id: products[divId].id,
+          node: node,
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: makeOptions(products[divId].text)
+        });
+      }
+    });
+  }
+
+  /* Expose so goPage() can trigger re-render */
+  window._shopifyRenderBuyButtons = renderBuyButtons;
+})();
 </script>
 </body>
 </html>
