@@ -1617,7 +1617,7 @@ footer{
     <div class="contact-inner rv">
       <div class="ey">Be First</div>
       <h2 class="contact-h">Get Early Access</h2>
-      <p class="contact-sub">Drop your email below and we'll reach out when new tins are ready. No spam — ever.</p>
+      <p class="contact-sub">Drop your info below and we'll reach out when new tins are ready. No spam — ever.</p>
 
       <div class="fg two">
         <div>
@@ -1627,6 +1627,12 @@ footer{
         <div>
           <label class="fl" for="f-email">Email Address</label>
           <input class="fi" id="f-email" type="email" placeholder="you@email.com">
+        </div>
+      </div>
+      <div class="fg" style="margin-top:14px;">
+        <div>
+          <label class="fl" for="f-phone">Phone Number <span style="font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></label>
+          <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
         </div>
       </div>
       <button class="fsub" onclick="submitForm()">Join the List →</button>
@@ -2417,8 +2423,10 @@ function bellClick(btn) {
 function submitForm() {
   const nameEl  = document.getElementById('f-name');
   const emailEl = document.getElementById('f-email');
+  const phoneEl = document.getElementById('f-phone');
   const name    = (nameEl  || {}).value || '';
   const email   = (emailEl || {}).value || '';
+  const phone   = (phoneEl || {}).value || '';
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
@@ -2428,12 +2436,15 @@ function submitForm() {
   showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
   if (nameEl)  nameEl.value = '';
   if (emailEl) emailEl.value = '';
+  if (phoneEl) phoneEl.value = '';
 
   // Send to Formspree in the background
+  const data = { name: name.trim(), email: email.trim() };
+  if (phone.trim()) data.phone = phone.trim();
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name.trim(), email: email.trim() })
+    body: JSON.stringify(data)
   })
   .then(res => { if (!res.ok) throw new Error(); })
   .catch(() => showToast('Something went wrong — please email thecozytin@gmail.com'));
