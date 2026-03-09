@@ -175,21 +175,6 @@ a{text-decoration:none;color:inherit;}
 .nicon:hover{background:rgba(27,58,107,.08);}
 .nicon svg{width:20px;height:20px;stroke-width:1.8;}
 
-.cart-btn{
-  position:relative;
-  width:40px;height:40px;
-  background:var(--navy);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;transition:background .2s,transform .15s;
-}
-.cart-btn:hover{background:var(--navy2);transform:scale(1.06);}
-.cart-btn svg{width:18px;height:18px;stroke-width:1.8;}
-.cart-n{
-  position:absolute;top:-2px;right:-2px;
-  width:16px;height:16px;background:var(--gold);
-  color:var(--navy);font-size:9px;font-weight:800;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-}
 .ham{
   display:flex;flex-direction:column;gap:5px;
   padding:8px;border-radius:8px;transition:background .15s;
@@ -1441,10 +1426,6 @@ footer{
       <button class="nicon sm-hide" onclick="showToast('Account coming soon')" aria-label="Account">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
-      <button class="cart-btn" onclick="showToast('Cart is empty — shop below 🍪')" aria-label="Cart">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-n">0</span>
-      </button>
     </div>
   </nav>
 
@@ -1760,10 +1741,6 @@ footer{
       <button class="nicon sm-hide" onclick="showToast('Search coming soon 🔍')" aria-label="Search">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
       </button>
-      <button class="cart-btn" onclick="showToast('Cart is empty 🍪')" aria-label="Cart">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-n">0</span>
-      </button>
     </div>
   </nav>
 
@@ -1919,12 +1896,7 @@ footer{
         <img src="nav-logo.png" alt="CozyTin" class="nav-logo-img">
       </div>
     </div>
-    <div class="ngroup end">
-      <button class="cart-btn" onclick="showToast('Cart is empty 🍪')" aria-label="Cart">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-n">0</span>
-      </button>
-    </div>
+    <div class="ngroup end"></div>
   </nav>
   <div class="subnav">
     <a class="subnav-email" href="mailto:thecozytin@gmail.com">thecozytin@gmail.com</a>
@@ -2147,12 +2119,7 @@ footer{
         <img src="nav-logo.png" alt="CozyTin" class="nav-logo-img">
       </div>
     </div>
-    <div class="ngroup end">
-      <button class="cart-btn" onclick="showToast('Cart is empty 🍪')" aria-label="Cart">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-n">0</span>
-      </button>
-    </div>
+    <div class="ngroup end"></div>
   </nav>
   <div class="subnav">
     <a class="subnav-email" href="mailto:thecozytin@gmail.com">thecozytin@gmail.com</a>
