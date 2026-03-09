@@ -2335,8 +2335,8 @@ footer{
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ──── ROUTER ──── */
-function goPage(name) {
+/* ──── ROUTER (hash-based with browser history) ──── */
+function goPage(name, skipPush) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('page-' + name);
   if (pg) {
@@ -2347,8 +2347,24 @@ function goPage(name) {
     setTimeout(function() {
       if (window._shopifyRenderBuyButtons) window._shopifyRenderBuyButtons();
     }, 200);
+    /* Push to browser history so back/forward works */
+    var hash = name === 'home' ? '' : name;
+    if (!skipPush) {
+      history.pushState({ page: name }, '', hash ? '#' + hash : window.location.pathname);
+    }
   }
 }
+
+/* Handle browser back/forward (swipe back on iPhone) */
+window.addEventListener('popstate', function(e) {
+  var page = 'home';
+  if (e.state && e.state.page) {
+    page = e.state.page;
+  } else if (window.location.hash) {
+    page = window.location.hash.replace('#', '');
+  }
+  goPage(page, true);
+});
 
 /* ──── NAV SCROLL SHADOW ──── */
 window.addEventListener('scroll', () => {
@@ -2455,6 +2471,14 @@ function animateDropNum() {
 
 /* ──── INIT ──── */
 document.addEventListener('DOMContentLoaded', () => {
+  /* Load correct page from URL hash (e.g. #product, #brownie, #about) */
+  var hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) {
+    goPage(hash, true);
+  } else {
+    /* Replace initial state so popstate knows "home" is the start */
+    history.replaceState({ page: 'home' }, '', window.location.pathname);
+  }
   initObserver();
   animateDropNum();
 });
