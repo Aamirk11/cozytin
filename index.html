@@ -2487,23 +2487,6 @@ function bellClick(btn) {
   setTimeout(() => { btn.style.background = origBg; btn.innerHTML = orig; }, 3000);
 }
 
-/* ──── WEB3FORMS CONFIG ──── */
-var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY_HERE'; // Replace with your Web3Forms access key
-
-function sendToWeb3Forms(data, successMsg) {
-  data.access_key = WEB3FORMS_KEY;
-  data.subject = 'New CozyTin Order — ' + (data.product || 'General');
-  data.from_name = 'CozyTin Website';
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(json) { if (!json.success) showToast('Something went wrong — please email thecozytin@gmail.com'); })
-  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
-}
-
 /* ──── FORM (home page) ──── */
 function submitForm() {
   var nameEl    = document.getElementById('f-name');
@@ -2527,7 +2510,14 @@ function submitForm() {
   if (phoneEl)   phoneEl.value = '';
   if (productEl) productEl.value = '';
 
-  sendToWeb3Forms({ name: name.trim(), email: email.trim(), phone: phone.trim(), product: product });
+  var data = { _subject: 'New Order Request — ' + product, name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, type: 'order' };
+  fetch('https://formspree.io/f/mqeykzoo', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(res) { if (!res.ok) throw new Error(); })
+  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
 }
 
 /* ──── ORDER FORM (product pages) ──── */
@@ -2554,7 +2544,14 @@ function submitOrder(product) {
   if (emailEl) emailEl.value = '';
   if (phoneEl) phoneEl.value = '';
 
-  sendToWeb3Forms({ name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product] });
+  var data = { _subject: 'New Order Request — ' + productNames[product], name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], type: 'order' };
+  fetch('https://formspree.io/f/mqeykzoo', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(res) { if (!res.ok) throw new Error(); })
+  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
 }
 
 /* ──── ACCORDION ──── */
