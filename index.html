@@ -1104,8 +1104,12 @@ footer{
 .ing-pill{
   background:#fff;border:1px solid var(--border);border-radius:100px;
   padding:8px 16px;font-size:12.5px;font-weight:600;color:var(--navy);
+  display:inline-flex;align-items:center;gap:6px;
   transition:border-color .2s,background .2s,transform .15s;
 }
+.ing-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold2);flex-shrink:0;}
+.ing-pill.green{border-color:#4a9;color:#2a7a56;}
+.ing-pill.green::before{background:#4a9;}
 .ing-pill:hover{border-color:var(--navy);background:var(--blush2);transform:translateY(-2px);}
 
 /* Delivery rows — always visible */
@@ -1119,7 +1123,7 @@ footer{
   display:flex;align-items:center;gap:10px;
   font-size:14px;color:var(--navy);font-weight:500;
 }
-.pd-del-row::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--navy);flex-shrink:0;opacity:.35;}
+.pd-del-row::before{content:'✓';font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0;width:20px;text-align:center;opacity:.5;}
 .pd-del-icon{display:none;}
 
 /* Actions */
@@ -1219,9 +1223,9 @@ footer{
 /* Spec row on black */
 .pd-specs-row{
   max-width:840px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
 }
-@media(min-width:640px){.pd-specs-row{grid-template-columns:repeat(5,1fr);}}
+@media(min-width:640px){.pd-specs-row{grid-template-columns:repeat(4,1fr);}}
 .pd-spec-item{
   padding:24px 12px;text-align:center;
   border:1px solid rgba(255,255,255,.08);
@@ -1253,6 +1257,8 @@ footer{
 }
 .pd-cta-h em{font-style:italic;font-weight:400;color:var(--gold2);}
 .pd-cta-p{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:24px;line-height:1.55;}
+.pd-cta-band .btn-p{background:#fff;color:var(--navy);}
+.pd-cta-band .btn-p:hover{background:var(--gold2);color:#fff;}
 
 /* Ticker marquee */
 .ticker{
@@ -2016,7 +2022,7 @@ footer{
               <span class="ing-pill">Pure Vanilla</span>
               <span class="ing-pill">Unbleached Flour</span>
               <span class="ing-pill">Sea Salt</span>
-              <span class="ing-pill">No Preservatives</span>
+              <span class="ing-pill green">No Preservatives</span>
             </div>
           </div>
 
@@ -2261,7 +2267,7 @@ footer{
               <span class="ing-pill">Pure Vanilla</span>
               <span class="ing-pill">Toasted Marshmallow</span>
               <span class="ing-pill">Sea Salt</span>
-              <span class="ing-pill">No Preservatives</span>
+              <span class="ing-pill green">No Preservatives</span>
             </div>
           </div>
 
