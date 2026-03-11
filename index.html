@@ -1354,10 +1354,18 @@ footer{
 .prod-card .btn-limited:hover{background:var(--gold2);transform:translateY(-2px);}
 
 /* ================================================
-   SHOPIFY BUY BUTTON OVERRIDES
+   INLINE ORDER FORM (product pages)
    ================================================ */
-.shopify-buy-btn-wrap{margin-bottom:28px;}
-.shopify-buy-btn-wrap iframe{border-radius:var(--r-md)!important;}
+.order-form{margin-bottom:28px;}
+.order-form .fg{display:grid;gap:12px;margin-bottom:12px;}
+.order-form .fg.two{grid-template-columns:1fr 1fr;}
+@media(max-width:480px){.order-form .fg.two{grid-template-columns:1fr;}}
+.order-form .fi{width:100%;padding:14px 16px;border:1.5px solid #e2e2e2;border-radius:12px;font-size:14px;font-family:Outfit,sans-serif;background:#fafafa;transition:border-color .2s;}
+.order-form .fi:focus{border-color:var(--navy);outline:none;background:#fff;}
+.order-form .fl{display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.order-form .fsub{width:100%;padding:17px 28px;background:var(--navy);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:800;font-family:Outfit,sans-serif;cursor:pointer;letter-spacing:.3px;box-shadow:0 6px 24px rgba(27,58,107,.28);transition:background .2s,transform .15s;}
+.order-form .fsub:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,58,107,.32);}
+.order-form .zelle-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center;line-height:1.5;}
 
 /* Responsive hide */
 .sm-hide{display:none;}
@@ -1601,31 +1609,39 @@ footer{
     </div>
   </section>
 
-  <!-- CONTACT FORM — placed before restocks for higher visibility -->
+  <!-- ORDER / CONTACT FORM -->
   <section class="contact-s" id="contact-s">
     <div class="contact-inner rv">
-      <div class="ey">Be First</div>
-      <h2 class="contact-h">Get Early Access</h2>
-      <p class="contact-sub">Drop your info below and we'll reach out when new tins are ready. No spam — ever.</p>
+      <div class="ey">Order Now</div>
+      <h2 class="contact-h">Place Your Order</h2>
+      <p class="contact-sub">Fill out the form below and we'll reach out to confirm your order and send Zelle payment details. No spam — ever.</p>
 
       <div class="fg two">
         <div>
-          <label class="fl" for="f-name">First Name</label>
+          <label class="fl" for="f-name">Name</label>
           <input class="fi" id="f-name" type="text" placeholder="Your name">
         </div>
         <div>
-          <label class="fl" for="f-email">Email Address</label>
+          <label class="fl" for="f-email">Email</label>
           <input class="fi" id="f-email" type="email" placeholder="you@email.com">
         </div>
       </div>
-      <div class="fg" style="margin-top:14px;">
+      <div class="fg two" style="margin-top:14px;">
         <div>
-          <label class="fl" for="f-phone">Phone Number <span style="font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span></label>
+          <label class="fl" for="f-phone">Phone</label>
           <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
         </div>
+        <div>
+          <label class="fl" for="f-product">Product</label>
+          <select class="fi" id="f-product" style="cursor:pointer;">
+            <option value="">Choose a tin...</option>
+            <option value="The Chicago Classic ($25)">The Chicago Classic — $25</option>
+            <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
+          </select>
+        </div>
       </div>
-      <button class="fsub" onclick="submitForm()">Join the List →</button>
-      <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">No spam, ever. Just a warm hello when new tins are ready.</p>
+      <button class="fsub" onclick="submitForm()">Place Order</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">We'll confirm via email, then send Zelle payment details. No spam, ever.</p>
     </div>
   </section>
 
@@ -2000,9 +2016,26 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs — Shopify Buy Button -->
-          <div class="pd-actions shopify-buy-btn-wrap">
-            <div id="shopify-buy-classic"></div>
+          <!-- Order Form -->
+          <div class="pd-actions order-form" id="order-form-classic">
+            <div class="fg two">
+              <div>
+                <label class="fl" for="of-classic-name">Name</label>
+                <input class="fi" id="of-classic-name" type="text" placeholder="Your name">
+              </div>
+              <div>
+                <label class="fl" for="of-classic-email">Email</label>
+                <input class="fi" id="of-classic-email" type="email" placeholder="you@email.com">
+              </div>
+            </div>
+            <div class="fg">
+              <div>
+                <label class="fl" for="of-classic-phone">Phone</label>
+                <input class="fi" id="of-classic-phone" type="tel" placeholder="(312) 555-1234">
+              </div>
+            </div>
+            <button class="fsub" onclick="submitOrder('classic')">🍪 Place Order — $25</button>
+            <p class="zelle-note">We'll confirm your order via email, then send Zelle payment details.</p>
           </div>
 
           <!-- Single accordion: Reheating Tips only -->
@@ -2068,7 +2101,7 @@ footer{
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Order your tin<br><em>today.</em></h2>
       <p class="pd-cta-p">Limited quantity — grab yours before they're gone.</p>
-      <div id="shopify-buy-classic-bottom" style="max-width:380px;margin:0 auto;"></div>
+      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-classic').scrollIntoView({behavior:'smooth'})">🍪 Place Order — $25</button>
     </div>
   </section>
   </div>
@@ -2227,9 +2260,26 @@ footer{
             </div>
           </div>
 
-          <!-- CTAs — Shopify Buy Button -->
-          <div class="pd-actions shopify-buy-btn-wrap">
-            <div id="shopify-buy-brownie"></div>
+          <!-- Order Form -->
+          <div class="pd-actions order-form" id="order-form-brownie">
+            <div class="fg two">
+              <div>
+                <label class="fl" for="of-brownie-name">Name</label>
+                <input class="fi" id="of-brownie-name" type="text" placeholder="Your name">
+              </div>
+              <div>
+                <label class="fl" for="of-brownie-email">Email</label>
+                <input class="fi" id="of-brownie-email" type="email" placeholder="you@email.com">
+              </div>
+            </div>
+            <div class="fg">
+              <div>
+                <label class="fl" for="of-brownie-phone">Phone</label>
+                <input class="fi" id="of-brownie-phone" type="tel" placeholder="(312) 555-1234">
+              </div>
+            </div>
+            <button class="fsub" onclick="submitOrder('brownie')">🍫 Place Order — $30</button>
+            <p class="zelle-note">We'll confirm your order via email, then send Zelle payment details.</p>
           </div>
 
           <!-- Accordion -->
@@ -2295,7 +2345,7 @@ footer{
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Grab your tin<br><em>before they're gone.</em></h2>
       <p class="pd-cta-p">Limited quantity this drop. Grab yours now.</p>
-      <div id="shopify-buy-brownie-bottom" style="max-width:380px;margin:0 auto;"></div>
+      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-brownie').scrollIntoView({behavior:'smooth'})">🍫 Place Order — $30</button>
     </div>
   </section>
   </div>
@@ -2345,10 +2395,6 @@ function goPage(name, skipPush) {
     pg.classList.add('active');
     window.scrollTo({top: 0, behavior: 'smooth'});
     setTimeout(initObserver, 120);
-    /* Render Shopify Buy Buttons on the newly visible page */
-    setTimeout(function() {
-      if (window._shopifyRenderBuyButtons) window._shopifyRenderBuyButtons();
-    }, 200);
     /* Push to browser history so back/forward works */
     var hash = name === 'home' ? '' : name;
     if (!skipPush) {
@@ -2405,28 +2451,30 @@ function bellClick(btn) {
   setTimeout(() => { btn.style.background = origBg; btn.innerHTML = orig; }, 3000);
 }
 
-/* ──── FORM ──── */
+/* ──── FORM (home page) ──── */
 function submitForm() {
-  const nameEl  = document.getElementById('f-name');
-  const emailEl = document.getElementById('f-email');
-  const phoneEl = document.getElementById('f-phone');
-  const name    = (nameEl  || {}).value || '';
-  const email   = (emailEl || {}).value || '';
-  const phone   = (phoneEl || {}).value || '';
+  const nameEl    = document.getElementById('f-name');
+  const emailEl   = document.getElementById('f-email');
+  const phoneEl   = document.getElementById('f-phone');
+  const productEl = document.getElementById('f-product');
+  const name    = (nameEl    || {}).value || '';
+  const email   = (emailEl   || {}).value || '';
+  const phone   = (phoneEl   || {}).value || '';
+  const product = (productEl || {}).value || '';
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
+  if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
+  if (!product) { showToast('Please select a product 🍪'); return; }
 
-  // Show success immediately — don't make them wait for the network
   const first = name.trim().split(' ')[0];
-  showToast(`You're on the list${first ? ', ' + first : ''}! We'll email you when new tins are ready 🍪`);
-  if (nameEl)  nameEl.value = '';
-  if (emailEl) emailEl.value = '';
-  if (phoneEl) phoneEl.value = '';
+  showToast(`Order received${first ? ', ' + first : ''}! We'll email you with Zelle details shortly 🍪`);
+  if (nameEl)    nameEl.value = '';
+  if (emailEl)   emailEl.value = '';
+  if (phoneEl)   phoneEl.value = '';
+  if (productEl) productEl.value = '';
 
-  // Send to Formspree in the background
-  const data = { name: name.trim(), email: email.trim() };
-  if (phone.trim()) data.phone = phone.trim();
+  const data = { name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, type: 'order' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -2434,6 +2482,40 @@ function submitForm() {
   })
   .then(res => { if (!res.ok) throw new Error(); })
   .catch(() => showToast('Something went wrong — please email thecozytin@gmail.com'));
+}
+
+/* ──── ORDER FORM (product pages) ──── */
+function submitOrder(product) {
+  var productNames = {
+    classic: 'The Chicago Classic ($25)',
+    brownie: 'Double Chocolate Marshmallow ($30)'
+  };
+  var prefix = 'of-' + product + '-';
+  var nameEl  = document.getElementById(prefix + 'name');
+  var emailEl = document.getElementById(prefix + 'email');
+  var phoneEl = document.getElementById(prefix + 'phone');
+  var name  = (nameEl  || {}).value || '';
+  var email = (emailEl || {}).value || '';
+  var phone = (phoneEl || {}).value || '';
+
+  if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
+  if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
+  if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
+
+  var first = name.trim().split(' ')[0];
+  showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
+  if (nameEl)  nameEl.value = '';
+  if (emailEl) emailEl.value = '';
+  if (phoneEl) phoneEl.value = '';
+
+  var data = { name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], type: 'order' };
+  fetch('https://formspree.io/f/mqeykzoo', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(res) { if (!res.ok) throw new Error(); })
+  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
 }
 
 /* ──── ACCORDION ──── */
@@ -2486,139 +2568,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- ──── SHOPIFY BUY BUTTON SDK ──── -->
-<script type="text/javascript">
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  var shopifyUI = null;
-  var componentsCreated = {};
-
-  /* Load the SDK script */
-  if (window.ShopifyBuy && window.ShopifyBuy.UI) {
-    shopifyReady();
-  } else {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    script.onload = shopifyReady;
-    document.head.appendChild(script);
-  }
-
-  function shopifyReady() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'njen1z-fw.myshopify.com',
-      storefrontAccessToken: 'feca5be90bb1fc1bed660af49f095a7f',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      shopifyUI = ui;
-      /* Render buttons for whichever page is currently active */
-      renderBuyButtons();
-    });
-  }
-
-  /* ── Shared styling for all Buy Buttons ── */
-  function makeOptions(buttonText) {
-    return {
-      "product": {
-        "styles": {
-          "product": { "text-align": "left" },
-          "title": { "display": "none" },
-          "price": { "display": "none" },
-          "compareAt": { "display": "none" },
-          "description": { "display": "none" },
-          "button": {
-            "font-family": "Outfit, sans-serif",
-            "font-size": "15px",
-            "font-weight": "700",
-            "padding": "17px 28px",
-            "background-color": "#1B3A6B",
-            "border-radius": "14px",
-            "color": "#fff",
-            "width": "100%",
-            ":hover": { "background-color": "#254F8F" },
-            ":focus": { "background-color": "#254F8F" }
-          }
-        },
-        "contents": {
-          "img": false,
-          "title": false,
-          "price": false,
-          "description": false,
-          "button": true,
-          "buttonWithQuantity": false
-        },
-        "text": { "button": buttonText }
-      },
-      "cart": {
-        "styles": {
-          "button": {
-            "font-family": "Outfit, sans-serif",
-            "font-size": "15px",
-            "font-weight": "700",
-            "padding": "16px 28px",
-            "background-color": "#1B3A6B",
-            "border-radius": "14px",
-            "color": "#fff",
-            ":hover": { "background-color": "#254F8F" },
-            ":focus": { "background-color": "#254F8F" }
-          }
-        },
-        "text": { "total": "Subtotal", "button": "Checkout" },
-        "popup": false
-      },
-      "toggle": {
-        "styles": {
-          "toggle": {
-            "font-family": "Outfit, sans-serif",
-            "background-color": "#1B3A6B",
-            ":hover": { "background-color": "#254F8F" },
-            ":focus": { "background-color": "#254F8F" }
-          },
-          "count": { "font-size": "14px" }
-        }
-      },
-      "option": {},
-      "productSet": {},
-      "modalProduct": {
-        "contents": {
-          "img": false,
-          "imgWithCarousel": true,
-          "button": false,
-          "buttonWithQuantity": true
-        },
-        "text": { "button": "Add to cart" }
-      }
-    };
-  }
-
-  /* Products config: { divId: { shopifyId, buttonText } } */
-  var products = {
-    'shopify-buy-classic':        { id: '8771766845492', text: '🍪 Add to Cart — $25' },
-    'shopify-buy-classic-bottom': { id: '8771766845492', text: '🍪 Add to Cart — $25' },
-    'shopify-buy-brownie':        { id: '8772607737908', text: '🍫 Add to Cart — $30' },
-    'shopify-buy-brownie-bottom': { id: '8772607737908', text: '🍫 Add to Cart — $30' }
-  };
-
-  /* Create components for visible, non-empty nodes */
-  function renderBuyButtons() {
-    if (!shopifyUI) return;
-    Object.keys(products).forEach(function (divId) {
-      var node = document.getElementById(divId);
-      if (node && !componentsCreated[divId]) {
-        componentsCreated[divId] = true;
-        shopifyUI.createComponent('product', {
-          id: products[divId].id,
-          node: node,
-          moneyFormat: '%24%7B%7Bamount%7D%7D',
-          options: makeOptions(products[divId].text)
-        });
-      }
-    });
-  }
-
-  /* Expose so goPage() can trigger re-render */
-  window._shopifyRenderBuyButtons = renderBuyButtons;
-})();
-</script>
 </body>
 </html>
