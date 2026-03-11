@@ -1356,16 +1356,25 @@ footer{
 /* ================================================
    INLINE ORDER FORM (product pages)
    ================================================ */
-.order-form{margin-bottom:28px;}
-.order-form .fg{display:grid;gap:12px;margin-bottom:12px;}
+.order-form{margin-bottom:28px;background:#f8f6f3;border:1.5px solid #e8e2da;border-radius:20px;padding:28px 24px 24px;}
+.order-form-header{margin-bottom:20px;}
+.order-form-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);background:rgba(27,58,107,.08);padding:5px 12px;border-radius:100px;margin-bottom:10px;}
+.order-form-title{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px;font-family:Outfit,sans-serif;}
+.order-form-desc{font-size:13px;color:var(--muted);line-height:1.55;}
+.order-form .fg{display:grid;gap:12px;margin-bottom:14px;}
 .order-form .fg.two{grid-template-columns:1fr 1fr;}
 @media(max-width:480px){.order-form .fg.two{grid-template-columns:1fr;}}
-.order-form .fi{width:100%;padding:14px 16px;border:1.5px solid #e2e2e2;border-radius:12px;font-size:14px;font-family:Outfit,sans-serif;background:#fafafa;transition:border-color .2s;}
-.order-form .fi:focus{border-color:var(--navy);outline:none;background:#fff;}
-.order-form .fl{display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.order-form .fsub{width:100%;padding:17px 28px;background:var(--navy);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:800;font-family:Outfit,sans-serif;cursor:pointer;letter-spacing:.3px;box-shadow:0 6px 24px rgba(27,58,107,.28);transition:background .2s,transform .15s;}
+.order-form .fi{width:100%;padding:14px 16px;border:1.5px solid #ddd;border-radius:12px;font-size:14px;font-family:Outfit,sans-serif;background:#fff;transition:border-color .2s,box-shadow .2s;}
+.order-form .fi:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(27,58,107,.08);}
+.order-form .fi::placeholder{color:#b8ada6;}
+.order-form .fl{display:block;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#5a5a5a;margin-bottom:6px;}
+.order-form .fsub{width:100%;padding:17px 28px;background:var(--navy);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:800;font-family:Outfit,sans-serif;cursor:pointer;letter-spacing:.3px;box-shadow:0 6px 24px rgba(27,58,107,.28);transition:background .2s,transform .15s;}
 .order-form .fsub:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,58,107,.32);}
-.order-form .zelle-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center;line-height:1.5;}
+.order-form .zelle-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.5;}
+.order-form .steps{display:flex;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8e2da;}
+.order-form .step{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--muted);}
+.order-form .step-num{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+@media(max-width:480px){.order-form .steps{gap:10px;}.order-form .step{font-size:11px;}}
 
 /* Responsive hide */
 .sm-hide{display:none;}
@@ -1614,34 +1623,41 @@ footer{
     <div class="contact-inner rv">
       <div class="ey">Order Now</div>
       <h2 class="contact-h">Place Your Order</h2>
-      <p class="contact-sub">Fill out the form below and we'll reach out to confirm your order and send Zelle payment details. No spam — ever.</p>
+      <p class="contact-sub">Pick your tin, fill out the form, and we'll handle the rest. Payment is via Zelle — we'll send details after confirming.</p>
 
-      <div class="fg two">
-        <div>
-          <label class="fl" for="f-name">Name</label>
-          <input class="fi" id="f-name" type="text" placeholder="Your name">
+      <div class="order-form" style="margin-bottom:0;">
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span> Fill out form</div>
+          <div class="step"><span class="step-num">2</span> We confirm</div>
+          <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
         </div>
-        <div>
-          <label class="fl" for="f-email">Email</label>
-          <input class="fi" id="f-email" type="email" placeholder="you@email.com">
+        <div class="fg two">
+          <div>
+            <label class="fl" for="f-name">Your Name</label>
+            <input class="fi" id="f-name" type="text" placeholder="Jane Doe">
+          </div>
+          <div>
+            <label class="fl" for="f-email">Email Address</label>
+            <input class="fi" id="f-email" type="email" placeholder="jane@email.com">
+          </div>
         </div>
+        <div class="fg two">
+          <div>
+            <label class="fl" for="f-phone">Phone Number</label>
+            <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
+          </div>
+          <div>
+            <label class="fl" for="f-product">Which Tin?</label>
+            <select class="fi" id="f-product" style="cursor:pointer;">
+              <option value="">Choose a tin...</option>
+              <option value="The Chicago Classic ($25)">The Chicago Classic — $25</option>
+              <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
+            </select>
+          </div>
+        </div>
+        <button class="fsub" onclick="submitForm()">Place Order</button>
+        <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
       </div>
-      <div class="fg two" style="margin-top:14px;">
-        <div>
-          <label class="fl" for="f-phone">Phone</label>
-          <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
-        </div>
-        <div>
-          <label class="fl" for="f-product">Product</label>
-          <select class="fi" id="f-product" style="cursor:pointer;">
-            <option value="">Choose a tin...</option>
-            <option value="The Chicago Classic ($25)">The Chicago Classic — $25</option>
-            <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
-          </select>
-        </div>
-      </div>
-      <button class="fsub" onclick="submitForm()">Place Order</button>
-      <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">We'll confirm via email, then send Zelle payment details. No spam, ever.</p>
     </div>
   </section>
 
@@ -2018,24 +2034,34 @@ footer{
 
           <!-- Order Form -->
           <div class="pd-actions order-form" id="order-form-classic">
+            <div class="order-form-header">
+              <div class="order-form-tag">Order Form</div>
+              <div class="order-form-title">Ready to order? Fill this out.</div>
+              <p class="order-form-desc">Submit your info and we'll email you to confirm + send Zelle payment details.</p>
+            </div>
+            <div class="steps">
+              <div class="step"><span class="step-num">1</span> Fill out form</div>
+              <div class="step"><span class="step-num">2</span> We confirm</div>
+              <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
+            </div>
             <div class="fg two">
               <div>
-                <label class="fl" for="of-classic-name">Name</label>
-                <input class="fi" id="of-classic-name" type="text" placeholder="Your name">
+                <label class="fl" for="of-classic-name">Your Name</label>
+                <input class="fi" id="of-classic-name" type="text" placeholder="Jane Doe">
               </div>
               <div>
-                <label class="fl" for="of-classic-email">Email</label>
-                <input class="fi" id="of-classic-email" type="email" placeholder="you@email.com">
+                <label class="fl" for="of-classic-email">Email Address</label>
+                <input class="fi" id="of-classic-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
             <div class="fg">
               <div>
-                <label class="fl" for="of-classic-phone">Phone</label>
+                <label class="fl" for="of-classic-phone">Phone Number</label>
                 <input class="fi" id="of-classic-phone" type="tel" placeholder="(312) 555-1234">
               </div>
             </div>
             <button class="fsub" onclick="submitOrder('classic')">🍪 Place Order — $25</button>
-            <p class="zelle-note">We'll confirm your order via email, then send Zelle payment details.</p>
+            <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
           </div>
 
           <!-- Single accordion: Reheating Tips only -->
@@ -2262,24 +2288,34 @@ footer{
 
           <!-- Order Form -->
           <div class="pd-actions order-form" id="order-form-brownie">
+            <div class="order-form-header">
+              <div class="order-form-tag">Order Form</div>
+              <div class="order-form-title">Ready to order? Fill this out.</div>
+              <p class="order-form-desc">Submit your info and we'll email you to confirm + send Zelle payment details.</p>
+            </div>
+            <div class="steps">
+              <div class="step"><span class="step-num">1</span> Fill out form</div>
+              <div class="step"><span class="step-num">2</span> We confirm</div>
+              <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
+            </div>
             <div class="fg two">
               <div>
-                <label class="fl" for="of-brownie-name">Name</label>
-                <input class="fi" id="of-brownie-name" type="text" placeholder="Your name">
+                <label class="fl" for="of-brownie-name">Your Name</label>
+                <input class="fi" id="of-brownie-name" type="text" placeholder="Jane Doe">
               </div>
               <div>
-                <label class="fl" for="of-brownie-email">Email</label>
-                <input class="fi" id="of-brownie-email" type="email" placeholder="you@email.com">
+                <label class="fl" for="of-brownie-email">Email Address</label>
+                <input class="fi" id="of-brownie-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
             <div class="fg">
               <div>
-                <label class="fl" for="of-brownie-phone">Phone</label>
+                <label class="fl" for="of-brownie-phone">Phone Number</label>
                 <input class="fi" id="of-brownie-phone" type="tel" placeholder="(312) 555-1234">
               </div>
             </div>
             <button class="fsub" onclick="submitOrder('brownie')">🍫 Place Order — $30</button>
-            <p class="zelle-note">We'll confirm your order via email, then send Zelle payment details.</p>
+            <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
           </div>
 
           <!-- Accordion -->
