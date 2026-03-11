@@ -1654,6 +1654,10 @@ footer{
               <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
             </select>
           </div>
+          <div>
+            <label class="fl" for="f-qty">Quantity</label>
+            <input class="fi" id="f-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+          </div>
         </div>
         <button class="fsub" onclick="submitForm()">Place Order</button>
         <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
@@ -2059,6 +2063,10 @@ footer{
                 <label class="fl" for="of-classic-phone">Phone Number</label>
                 <input class="fi" id="of-classic-phone" type="tel" placeholder="(312) 555-1234">
               </div>
+              <div>
+                <label class="fl" for="of-classic-qty">Quantity</label>
+                <input class="fi" id="of-classic-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+              </div>
             </div>
             <button class="fsub" onclick="submitOrder('classic')">🍪 Place Order — $25</button>
             <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
@@ -2313,6 +2321,10 @@ footer{
                 <label class="fl" for="of-brownie-phone">Phone Number</label>
                 <input class="fi" id="of-brownie-phone" type="tel" placeholder="(312) 555-1234">
               </div>
+              <div>
+                <label class="fl" for="of-brownie-qty">Quantity</label>
+                <input class="fi" id="of-brownie-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+              </div>
             </div>
             <button class="fsub" onclick="submitOrder('brownie')">🍫 Place Order — $30</button>
             <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
@@ -2493,15 +2505,18 @@ function submitForm() {
   var emailEl   = document.getElementById('f-email');
   var phoneEl   = document.getElementById('f-phone');
   var productEl = document.getElementById('f-product');
+  var qtyEl     = document.getElementById('f-qty');
   var name    = (nameEl    || {}).value || '';
   var email   = (emailEl   || {}).value || '';
   var phone   = (phoneEl   || {}).value || '';
   var product = (productEl || {}).value || '';
+  var qty     = parseInt((qtyEl || {}).value) || 1;
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
   if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
   if (!product) { showToast('Please select a product 🍪'); return; }
+  if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
   showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
@@ -2509,8 +2524,9 @@ function submitForm() {
   if (emailEl)   emailEl.value = '';
   if (phoneEl)   phoneEl.value = '';
   if (productEl) productEl.value = '';
+  if (qtyEl)     qtyEl.value = '1';
 
-  var data = { _subject: 'New Order Request — ' + product, name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, type: 'order' };
+  var data = { _subject: 'New Order Request — ' + product + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, quantity: qty, type: 'order' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -2530,21 +2546,25 @@ function submitOrder(product) {
   var nameEl  = document.getElementById(prefix + 'name');
   var emailEl = document.getElementById(prefix + 'email');
   var phoneEl = document.getElementById(prefix + 'phone');
+  var qtyEl   = document.getElementById(prefix + 'qty');
   var name  = (nameEl  || {}).value || '';
   var email = (emailEl || {}).value || '';
   var phone = (phoneEl || {}).value || '';
+  var qty   = parseInt((qtyEl || {}).value) || 1;
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
   if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
+  if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
   showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
   if (nameEl)  nameEl.value = '';
   if (emailEl) emailEl.value = '';
   if (phoneEl) phoneEl.value = '';
+  if (qtyEl)   qtyEl.value = '1';
 
-  var data = { _subject: 'New Order Request — ' + productNames[product], name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], type: 'order' };
+  var data = { _subject: 'New Order Request — ' + productNames[product] + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], quantity: qty, type: 'order' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
