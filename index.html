@@ -818,14 +818,15 @@ a{text-decoration:none;color:inherit;}
 .fi::placeholder{color:#c4b5b0;}
 .form-row{margin-bottom:0;}
 .fsub{
-  width:100%;padding:16px;
+  display:block;margin:24px auto 0;
+  width:100%;max-width:380px;padding:17px 28px;
   background:var(--navy);color:#fff;
-  border-radius:12px;font-size:15px;font-weight:700;
-  margin-top:20px;
+  border:none;border-radius:14px;font-size:16px;font-weight:800;
+  letter-spacing:.3px;cursor:pointer;
   transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 4px 20px rgba(27,58,107,.22);
+  box-shadow:0 6px 24px rgba(27,58,107,.28);
 }
-.fsub:hover{background:var(--navy2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(27,58,107,.32);}
+.fsub:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,58,107,.32);}
 
 /* ================================================
    FOOTER
@@ -1058,12 +1059,12 @@ footer{
 
 /* Stat pills */
 .pd-stats{
-  display:flex;align-items:center;gap:0;
-  background:#fff;border:1.5px solid var(--border);border-radius:16px;
-  padding:18px 0;margin-bottom:28px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-bottom:28px;
 }
 .pd-stat{
-  flex:1;text-align:center;padding:0 4px;
+  text-align:center;padding:18px 12px;
+  background:#fff;border:1.5px solid var(--border);border-radius:14px;
 }
 .pd-stat-n{
   font-family:'Cormorant Garamond',serif;
@@ -1071,7 +1072,7 @@ footer{
   color:var(--navy);line-height:1;margin-bottom:4px;
 }
 .pd-stat-l{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
-.pd-stat-div{width:1px;background:var(--border);align-self:stretch;}
+.pd-stat-div{display:none;}
 
 /* Price */
 .pd-price-row{
@@ -1115,10 +1116,11 @@ footer{
   margin-bottom:28px;
 }
 .pd-del-row{
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:10px;
   font-size:14px;color:var(--navy);font-weight:500;
 }
-.pd-del-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center;}
+.pd-del-row::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--navy);flex-shrink:0;opacity:.35;}
+.pd-del-icon{display:none;}
 
 /* Actions */
 .pd-actions{display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
@@ -1356,14 +1358,14 @@ footer{
 /* ================================================
    INLINE ORDER FORM (product pages)
    ================================================ */
-.order-form{margin-bottom:28px;background:#f8f6f3;border:1.5px solid #e8e2da;border-radius:20px;padding:28px 24px 24px;}
+.order-form{margin-bottom:28px;background:#fff;border:2px solid var(--navy);border-radius:20px;padding:28px 24px 24px;box-shadow:0 8px 40px rgba(27,58,107,.10);}
 .order-form-header{margin-bottom:20px;}
 .order-form-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);background:rgba(27,58,107,.08);padding:5px 12px;border-radius:100px;margin-bottom:10px;}
 .order-form-title{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px;font-family:Outfit,sans-serif;}
 .order-form-desc{font-size:13px;color:var(--muted);line-height:1.55;}
 .order-form .fg{display:grid;gap:12px;margin-bottom:14px;}
 .order-form .fg.two{grid-template-columns:1fr 1fr;}
-@media(max-width:480px){.order-form .fg.two{grid-template-columns:1fr;}}
+@media(max-width:480px){.order-form .fg.two{grid-template-columns:1fr 1fr;}}
 .order-form .fi{width:100%;padding:14px 16px;border:1.5px solid #ddd;border-radius:12px;font-size:14px;font-family:Outfit,sans-serif;background:#fff;transition:border-color .2s,box-shadow .2s;}
 .order-form .fi:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(27,58,107,.08);}
 .order-form .fi::placeholder{color:#b8ada6;}
@@ -1641,11 +1643,7 @@ footer{
             <input class="fi" id="f-email" type="email" placeholder="jane@email.com">
           </div>
         </div>
-        <div class="fg two">
-          <div>
-            <label class="fl" for="f-phone">Phone Number</label>
-            <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
-          </div>
+        <div class="fg">
           <div>
             <label class="fl" for="f-product">Which Tin?</label>
             <select class="fi" id="f-product" style="cursor:pointer;">
@@ -1654,9 +1652,15 @@ footer{
               <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
             </select>
           </div>
+        </div>
+        <div class="fg two">
+          <div>
+            <label class="fl" for="f-phone">Phone Number</label>
+            <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
+          </div>
           <div>
             <label class="fl" for="f-qty">Quantity</label>
-            <input class="fi" id="f-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+            <input class="fi" id="f-qty" type="number" min="1" value="1" placeholder="1">
           </div>
         </div>
         <button class="fsub" onclick="submitForm()">Place Order</button>
@@ -2006,34 +2010,21 @@ footer{
           <div class="pd-ings">
             <div class="pd-ings-label">What goes in</div>
             <div class="ing-pills">
-              <span class="ing-pill">🧈 Real Butter</span>
-              <span class="ing-pill">🥚 Farm Eggs</span>
-              <span class="ing-pill">🍫 Choc Chips</span>
-              <span class="ing-pill">🌿 Pure Vanilla</span>
-              <span class="ing-pill">🌾 Unbleached Flour</span>
-              <span class="ing-pill">🧂 Sea Salt</span>
-              <span class="ing-pill">✓ No Preservatives</span>
+              <span class="ing-pill">Real Butter</span>
+              <span class="ing-pill">Farm Eggs</span>
+              <span class="ing-pill">Chocolate Chips</span>
+              <span class="ing-pill">Pure Vanilla</span>
+              <span class="ing-pill">Unbleached Flour</span>
+              <span class="ing-pill">Sea Salt</span>
+              <span class="ing-pill">No Preservatives</span>
             </div>
           </div>
 
-          <!-- Delivery info — visible, not hidden -->
+          <!-- Delivery info -->
           <div class="pd-delivery">
-            <div class="pd-del-row">
-              <span class="pd-del-icon">🚀</span>
-              <span>Pickup from our Morton Grove kitchen</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">📅</span>
-              <span>Order ahead · We'll confirm by email</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">🔥</span>
-              <span>Arrives warm — open and eat immediately</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">📦</span>
-              <span>Packaged in our signature CozyTin</span>
-            </div>
+            <div class="pd-del-row"><span>Pickup from our Morton Grove kitchen</span></div>
+            <div class="pd-del-row"><span>Order ahead — we'll confirm by email</span></div>
+            <div class="pd-del-row"><span>Arrives warm, ready to eat</span></div>
           </div>
 
           <!-- Order Form -->
@@ -2058,14 +2049,14 @@ footer{
                 <input class="fi" id="of-classic-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
-            <div class="fg">
+            <div class="fg two">
               <div>
                 <label class="fl" for="of-classic-phone">Phone Number</label>
                 <input class="fi" id="of-classic-phone" type="tel" placeholder="(312) 555-1234">
               </div>
               <div>
                 <label class="fl" for="of-classic-qty">Quantity</label>
-                <input class="fi" id="of-classic-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+                <input class="fi" id="of-classic-qty" type="number" min="1" value="1" placeholder="1">
               </div>
             </div>
             <button class="fsub" onclick="submitOrder('classic')">🍪 Place Order — $25</button>
@@ -2264,34 +2255,21 @@ footer{
           <div class="pd-ings">
             <div class="pd-ings-label">What goes in</div>
             <div class="ing-pills">
-              <span class="ing-pill">🧈 Real Butter</span>
-              <span class="ing-pill">🥚 Farm Eggs</span>
-              <span class="ing-pill">🍫 Double Cocoa</span>
-              <span class="ing-pill">🌿 Pure Vanilla</span>
-              <span class="ing-pill">🔥 Toasted Marshmallow</span>
-              <span class="ing-pill">🧂 Sea Salt</span>
-              <span class="ing-pill">✓ No Preservatives</span>
+              <span class="ing-pill">Real Butter</span>
+              <span class="ing-pill">Farm Eggs</span>
+              <span class="ing-pill">Double Cocoa</span>
+              <span class="ing-pill">Pure Vanilla</span>
+              <span class="ing-pill">Toasted Marshmallow</span>
+              <span class="ing-pill">Sea Salt</span>
+              <span class="ing-pill">No Preservatives</span>
             </div>
           </div>
 
           <!-- Delivery info -->
           <div class="pd-delivery">
-            <div class="pd-del-row">
-              <span class="pd-del-icon">🚀</span>
-              <span>Pickup from our Morton Grove kitchen</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">📅</span>
-              <span>Order ahead · We'll confirm by email</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">🔥</span>
-              <span>Arrives warm — open and eat immediately</span>
-            </div>
-            <div class="pd-del-row">
-              <span class="pd-del-icon">📦</span>
-              <span>Packaged in our signature CozyTin</span>
-            </div>
+            <div class="pd-del-row"><span>Pickup from our Morton Grove kitchen</span></div>
+            <div class="pd-del-row"><span>Order ahead — we'll confirm by email</span></div>
+            <div class="pd-del-row"><span>Arrives warm, ready to eat</span></div>
           </div>
 
           <!-- Order Form -->
@@ -2316,14 +2294,14 @@ footer{
                 <input class="fi" id="of-brownie-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
-            <div class="fg">
+            <div class="fg two">
               <div>
                 <label class="fl" for="of-brownie-phone">Phone Number</label>
                 <input class="fi" id="of-brownie-phone" type="tel" placeholder="(312) 555-1234">
               </div>
               <div>
                 <label class="fl" for="of-brownie-qty">Quantity</label>
-                <input class="fi" id="of-brownie-qty" type="number" min="1" value="1" placeholder="1" style="max-width:120px;">
+                <input class="fi" id="of-brownie-qty" type="number" min="1" value="1" placeholder="1">
               </div>
             </div>
             <button class="fsub" onclick="submitOrder('brownie')">🍫 Place Order — $30</button>
