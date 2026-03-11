@@ -2487,37 +2487,47 @@ function bellClick(btn) {
   setTimeout(() => { btn.style.background = origBg; btn.innerHTML = orig; }, 3000);
 }
 
+/* ──── WEB3FORMS CONFIG ──── */
+var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY_HERE'; // Replace with your Web3Forms access key
+
+function sendToWeb3Forms(data, successMsg) {
+  data.access_key = WEB3FORMS_KEY;
+  data.subject = 'New CozyTin Order — ' + (data.product || 'General');
+  data.from_name = 'CozyTin Website';
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(json) { if (!json.success) showToast('Something went wrong — please email thecozytin@gmail.com'); })
+  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
+}
+
 /* ──── FORM (home page) ──── */
 function submitForm() {
-  const nameEl    = document.getElementById('f-name');
-  const emailEl   = document.getElementById('f-email');
-  const phoneEl   = document.getElementById('f-phone');
-  const productEl = document.getElementById('f-product');
-  const name    = (nameEl    || {}).value || '';
-  const email   = (emailEl   || {}).value || '';
-  const phone   = (phoneEl   || {}).value || '';
-  const product = (productEl || {}).value || '';
+  var nameEl    = document.getElementById('f-name');
+  var emailEl   = document.getElementById('f-email');
+  var phoneEl   = document.getElementById('f-phone');
+  var productEl = document.getElementById('f-product');
+  var name    = (nameEl    || {}).value || '';
+  var email   = (emailEl   || {}).value || '';
+  var phone   = (phoneEl   || {}).value || '';
+  var product = (productEl || {}).value || '';
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
   if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
   if (!product) { showToast('Please select a product 🍪'); return; }
 
-  const first = name.trim().split(' ')[0];
-  showToast(`Order received${first ? ', ' + first : ''}! We'll email you with Zelle details shortly 🍪`);
+  var first = name.trim().split(' ')[0];
+  showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
   if (nameEl)    nameEl.value = '';
   if (emailEl)   emailEl.value = '';
   if (phoneEl)   phoneEl.value = '';
   if (productEl) productEl.value = '';
 
-  const data = { name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, type: 'order' };
-  fetch('https://formspree.io/f/mqeykzoo', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res => { if (!res.ok) throw new Error(); })
-  .catch(() => showToast('Something went wrong — please email thecozytin@gmail.com'));
+  sendToWeb3Forms({ name: name.trim(), email: email.trim(), phone: phone.trim(), product: product });
 }
 
 /* ──── ORDER FORM (product pages) ──── */
@@ -2544,14 +2554,7 @@ function submitOrder(product) {
   if (emailEl) emailEl.value = '';
   if (phoneEl) phoneEl.value = '';
 
-  var data = { name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], type: 'order' };
-  fetch('https://formspree.io/f/mqeykzoo', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(function(res) { if (!res.ok) throw new Error(); })
-  .catch(function() { showToast('Something went wrong — please email thecozytin@gmail.com'); });
+  sendToWeb3Forms({ name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product] });
 }
 
 /* ──── ACCORDION ──── */
