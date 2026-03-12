@@ -1417,7 +1417,7 @@ footer{
         🔔 Get Early Access
       </button>
     </div>
-    <div class="dcta"><button onclick="goPage('product');closeDrawer()">Shop The Classic →</button></div>
+    <div class="dcta"><button onclick="goPage('product');closeDrawer()">View The Classic →</button></div>
   </div>
 </div>
 
@@ -1484,7 +1484,7 @@ footer{
     <h1 class="intro-h rv">Homemade<br><em>with love.</em></h1>
     <p class="intro-sub rv d1">Thick, gooey chocolate chip cookies baked completely from scratch. Every tin made with care, ready for pickup in Morton Grove.</p>
     <div class="intro-btns rv d2">
-      <button class="btn-p" onclick="goPage('product')">Shop The Classic</button>
+      <button class="btn-p" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Join the Waitlist</button>
       <button class="btn-o" onclick="goPage('about')">Our Story</button>
     </div>
   </section>
@@ -1497,7 +1497,7 @@ footer{
       <div class="prod-card rv left" onclick="goPage('product')">
         <div class="prod-card-img">
           <img src="new-product-matte.png" alt="The Chicago Classic Cookie Tin">
-          <div class="prod-card-badge limited">Limited Quantity</div>
+          <div class="prod-card-badge limited">Sold Out</div>
           <button class="prod-card-bell" onclick="event.stopPropagation();document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})" aria-label="Notify me">
             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </button>
@@ -1508,7 +1508,7 @@ footer{
           <div class="prod-card-price">$25</div>
           <p class="prod-card-desc">Thick, gooey chocolate chip cookies baked from scratch — golden edges, soft center, chocolate chips in every bite.</p>
           <div class="prod-card-foot">
-            <button class="btn-limited" onclick="event.stopPropagation();goPage('product')">🍪 Order Now</button>
+            <button class="btn-limited" onclick="event.stopPropagation();document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Get Notified</button>
           </div>
         </div>
       </div>
@@ -1517,7 +1517,7 @@ footer{
       <div class="prod-card rv right" onclick="goPage('brownie')">
         <div class="prod-card-img">
           <img src="brownie-1.jpg" alt="Double Chocolate Marshmallow Cookie Tin">
-          <div class="prod-card-badge limited">Limited Quantity</div>
+          <div class="prod-card-badge limited">Sold Out</div>
           <button class="prod-card-bell" onclick="event.stopPropagation();document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})" aria-label="Notify me">
             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </button>
@@ -1528,7 +1528,7 @@ footer{
           <div class="prod-card-price">$30</div>
           <p class="prod-card-desc">Rich fudgy brownies loaded with toasted marshmallow — packed into the same signature CozyTin. Made from scratch.</p>
           <div class="prod-card-foot">
-            <button class="btn-limited" onclick="event.stopPropagation();goPage('brownie')">🍫 Order Now</button>
+            <button class="btn-limited" onclick="event.stopPropagation();document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Get Notified</button>
           </div>
         </div>
       </div>
@@ -1574,10 +1574,10 @@ footer{
           <em>Limited quantity available.</em>
         </h2>
         <p class="brownie-body">
-          <strong>Rich fudgy brownies loaded with toasted marshmallow</strong> — packed into the same signature CozyTin you already love. Made from scratch, just like everything we do. Grab yours before they're gone.
+          <strong>Rich fudgy brownies loaded with toasted marshmallow</strong> — packed into the same signature CozyTin you already love. Made from scratch, just like everything we do. Sold out — restocking soon.
         </p>
-        <button class="btn-g rv" onclick="goPage('brownie')">
-          🍫 Order Now — $30
+        <button class="btn-g rv" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
+          Get Notified When We Restock
         </button>
       </div>
       <div class="brownie-imgs rv right">
@@ -1617,7 +1617,7 @@ footer{
         </div>
       </div>
       <button class="btn-g" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
-        Secure Your Spot →
+        Join the Waitlist →
       </button>
     </div>
     <!-- mix-blend-mode:screen removes black bg from mascot PNG -->
@@ -1629,16 +1629,11 @@ footer{
   <!-- ORDER / CONTACT FORM -->
   <section class="contact-s" id="contact-s">
     <div class="contact-inner rv">
-      <div class="ey">Order Now</div>
-      <h2 class="contact-h">Place Your Order</h2>
-      <p class="contact-sub">Pick your tin, fill out the form, and we'll handle the rest. Payment is via Zelle — we'll send details after confirming.</p>
+      <div class="ey">Sold Out — Restocking Soon</div>
+      <h2 class="contact-h">Get Notified</h2>
+      <p class="contact-sub">We're sold out! Drop your info below and we'll let you know the moment we restock.</p>
 
       <div class="order-form" style="margin-bottom:0;">
-        <div class="steps">
-          <div class="step"><span class="step-num">1</span> Fill out form</div>
-          <div class="step"><span class="step-num">2</span> We confirm</div>
-          <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
-        </div>
         <div class="fg two">
           <div>
             <label class="fl" for="f-name">Your Name</label>
@@ -1651,26 +1646,12 @@ footer{
         </div>
         <div class="fg">
           <div>
-            <label class="fl" for="f-product">Which Tin?</label>
-            <select class="fi" id="f-product" style="cursor:pointer;">
-              <option value="">Choose a tin...</option>
-              <option value="The Chicago Classic ($25)">The Chicago Classic — $25</option>
-              <option value="Double Chocolate Marshmallow ($30)">Double Chocolate Marshmallow — $30</option>
-            </select>
-          </div>
-        </div>
-        <div class="fg two">
-          <div>
             <label class="fl" for="f-phone">Phone Number</label>
             <input class="fi" id="f-phone" type="tel" placeholder="(312) 555-1234">
           </div>
-          <div>
-            <label class="fl" for="f-qty">Quantity</label>
-            <input class="fi" id="f-qty" type="number" min="1" value="1" placeholder="1">
-          </div>
         </div>
-        <button class="fsub" onclick="submitForm()">Place Order</button>
-        <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
+        <button class="fsub" onclick="submitForm()">Notify Me When We Restock</button>
+        <p class="zelle-note">We'll only use your info to let you know when we're back in stock.</p>
       </div>
     </div>
   </section>
@@ -1892,7 +1873,7 @@ footer{
     <p class="about-cta-sub rv d2">Join the early-access list and be first to know when the drop opens.</p>
     <div class="about-cta-btns rv d3">
       <button class="btn-p" onclick="goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),100)">🔔 Get Drop Alerts</button>
-      <button class="btn-o" onclick="goPage('product')">Shop The Classic</button>
+      <button class="btn-o" onclick="goPage('product')">View The Classic</button>
     </div>
   </section>
 
@@ -1977,7 +1958,7 @@ footer{
 
       <!-- RIGHT: product info column -->
       <div class="pd-info-col rv right">
-        <div class="pd-badge">🍪 Limited Drop</div>
+        <div class="pd-badge">🍪 Sold Out — Restocking Soon</div>
           <h1 class="pd-name">The Chicago<br>Classic</h1>
           <p class="pd-sub">Thick &amp; gooey chocolate chip cookie tin</p>
 
@@ -2036,14 +2017,9 @@ footer{
           <!-- Order Form -->
           <div class="pd-actions order-form" id="order-form-classic">
             <div class="order-form-header">
-              <div class="order-form-tag">Order Form</div>
-              <div class="order-form-title">Ready to order? Fill this out.</div>
-              <p class="order-form-desc">Submit your info and we'll email you to confirm + send Zelle payment details.</p>
-            </div>
-            <div class="steps">
-              <div class="step"><span class="step-num">1</span> Fill out form</div>
-              <div class="step"><span class="step-num">2</span> We confirm</div>
-              <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
+              <div class="order-form-tag">Sold Out — Restocking Soon</div>
+              <div class="order-form-title">Get notified when we restock.</div>
+              <p class="order-form-desc">Drop your info and we'll let you know the moment this tin is back.</p>
             </div>
             <div class="fg two">
               <div>
@@ -2055,18 +2031,14 @@ footer{
                 <input class="fi" id="of-classic-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
-            <div class="fg two">
+            <div class="fg">
               <div>
                 <label class="fl" for="of-classic-phone">Phone Number</label>
                 <input class="fi" id="of-classic-phone" type="tel" placeholder="(312) 555-1234">
               </div>
-              <div>
-                <label class="fl" for="of-classic-qty">Quantity</label>
-                <input class="fi" id="of-classic-qty" type="number" min="1" value="1" placeholder="1">
-              </div>
             </div>
-            <button class="fsub" onclick="submitOrder('classic')">🍪 Place Order — $25</button>
-            <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
+            <button class="fsub" onclick="submitOrder('classic')">Notify Me</button>
+            <p class="zelle-note">We'll only reach out when this tin is back in stock.</p>
           </div>
 
           <!-- Single accordion: Reheating Tips only -->
@@ -2130,9 +2102,9 @@ footer{
   <!-- CTA BAND -->
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
-      <h2 class="pd-cta-h">Order your tin<br><em>today.</em></h2>
-      <p class="pd-cta-p">Limited quantity — grab yours before they're gone.</p>
-      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-classic').scrollIntoView({behavior:'smooth'})">🍪 Place Order — $25</button>
+      <h2 class="pd-cta-h">Sold out.<br><em>Restocking soon.</em></h2>
+      <p class="pd-cta-p">Be the first to know when The Chicago Classic is back.</p>
+      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-classic').scrollIntoView({behavior:'smooth'})">Get Notified</button>
     </div>
   </section>
   </div>
@@ -2222,7 +2194,7 @@ footer{
 
       <!-- RIGHT: product info column -->
       <div class="pd-info-col rv right">
-        <div class="pd-badge" style="background:var(--gold);color:#0d0d0d;">🍫 Limited Drop</div>
+        <div class="pd-badge" style="background:var(--gold);color:#0d0d0d;">🍫 Sold Out — Restocking Soon</div>
           <h1 class="pd-name">Double Chocolate<br>Marshmallow</h1>
           <p class="pd-sub">Fudgy brownies loaded with toasted marshmallow</p>
 
@@ -2234,8 +2206,8 @@ footer{
             </div>
             <div class="pd-stat-div"></div>
             <div class="pd-stat">
-              <div class="pd-stat-n">Limited</div>
-              <div class="pd-stat-l">Quantity</div>
+              <div class="pd-stat-n">Sold Out</div>
+              <div class="pd-stat-l">Restocking</div>
             </div>
             <div class="pd-stat-div"></div>
             <div class="pd-stat">
@@ -2255,7 +2227,7 @@ footer{
             <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#f0faf5;color:var(--green);font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid rgba(46,125,82,.18);">Available</span>
           </div>
 
-          <p class="pd-desc">Rich, fudgy double chocolate brownies loaded with toasted marshmallow — packed into the same signature CozyTin you already love. Made completely from scratch with real cocoa, real butter, and gooey marshmallow toasted to perfection. Limited quantity — grab yours before they're gone.</p>
+          <p class="pd-desc">Rich, fudgy double chocolate brownies loaded with toasted marshmallow — packed into the same signature CozyTin you already love. Made completely from scratch with real cocoa, real butter, and gooey marshmallow toasted to perfection. Currently sold out — restocking soon.</p>
 
           <!-- Ingredients -->
           <div class="pd-ings">
@@ -2281,14 +2253,9 @@ footer{
           <!-- Order Form -->
           <div class="pd-actions order-form" id="order-form-brownie">
             <div class="order-form-header">
-              <div class="order-form-tag">Order Form</div>
-              <div class="order-form-title">Ready to order? Fill this out.</div>
-              <p class="order-form-desc">Submit your info and we'll email you to confirm + send Zelle payment details.</p>
-            </div>
-            <div class="steps">
-              <div class="step"><span class="step-num">1</span> Fill out form</div>
-              <div class="step"><span class="step-num">2</span> We confirm</div>
-              <div class="step"><span class="step-num">3</span> Pay via Zelle</div>
+              <div class="order-form-tag">Sold Out — Restocking Soon</div>
+              <div class="order-form-title">Get notified when we restock.</div>
+              <p class="order-form-desc">Drop your info and we'll let you know the moment this tin is back.</p>
             </div>
             <div class="fg two">
               <div>
@@ -2300,18 +2267,14 @@ footer{
                 <input class="fi" id="of-brownie-email" type="email" placeholder="jane@email.com">
               </div>
             </div>
-            <div class="fg two">
+            <div class="fg">
               <div>
                 <label class="fl" for="of-brownie-phone">Phone Number</label>
                 <input class="fi" id="of-brownie-phone" type="tel" placeholder="(312) 555-1234">
               </div>
-              <div>
-                <label class="fl" for="of-brownie-qty">Quantity</label>
-                <input class="fi" id="of-brownie-qty" type="number" min="1" value="1" placeholder="1">
-              </div>
             </div>
-            <button class="fsub" onclick="submitOrder('brownie')">🍫 Place Order — $30</button>
-            <p class="zelle-note">No payment now — we'll reach out first to confirm your order.</p>
+            <button class="fsub" onclick="submitOrder('brownie')">Notify Me</button>
+            <p class="zelle-note">We'll only reach out when this tin is back in stock.</p>
           </div>
 
           <!-- Accordion -->
@@ -2375,9 +2338,9 @@ footer{
   <!-- CTA BAND -->
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
-      <h2 class="pd-cta-h">Grab your tin<br><em>before they're gone.</em></h2>
-      <p class="pd-cta-p">Limited quantity this drop. Grab yours now.</p>
-      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-brownie').scrollIntoView({behavior:'smooth'})">🍫 Place Order — $30</button>
+      <h2 class="pd-cta-h">Sold out.<br><em>Restocking soon.</em></h2>
+      <p class="pd-cta-p">Be the first to know when the Double Chocolate Marshmallow is back.</p>
+      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-brownie').scrollIntoView({behavior:'smooth'})">Get Notified</button>
     </div>
   </section>
   </div>
@@ -2485,32 +2448,24 @@ function bellClick(btn) {
 
 /* ──── FORM (home page) ──── */
 function submitForm() {
-  var nameEl    = document.getElementById('f-name');
-  var emailEl   = document.getElementById('f-email');
-  var phoneEl   = document.getElementById('f-phone');
-  var productEl = document.getElementById('f-product');
-  var qtyEl     = document.getElementById('f-qty');
-  var name    = (nameEl    || {}).value || '';
-  var email   = (emailEl   || {}).value || '';
-  var phone   = (phoneEl   || {}).value || '';
-  var product = (productEl || {}).value || '';
-  var qty     = parseInt((qtyEl || {}).value) || 1;
+  var nameEl  = document.getElementById('f-name');
+  var emailEl = document.getElementById('f-email');
+  var phoneEl = document.getElementById('f-phone');
+  var name  = (nameEl  || {}).value || '';
+  var email = (emailEl || {}).value || '';
+  var phone = (phoneEl || {}).value || '';
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
   if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
-  if (!product) { showToast('Please select a product 🍪'); return; }
-  if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
-  showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
-  if (nameEl)    nameEl.value = '';
-  if (emailEl)   emailEl.value = '';
-  if (phoneEl)   phoneEl.value = '';
-  if (productEl) productEl.value = '';
-  if (qtyEl)     qtyEl.value = '1';
+  showToast('You\'re on the list' + (first ? ', ' + first : '') + '! We\'ll notify you when we restock 🍪');
+  if (nameEl)  nameEl.value = '';
+  if (emailEl) emailEl.value = '';
+  if (phoneEl) phoneEl.value = '';
 
-  var data = { _subject: 'New Order Request — ' + product + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, quantity: qty, type: 'order' };
+  var data = { _subject: 'New Waitlist Signup', name: name.trim(), email: email.trim(), phone: phone.trim(), type: 'waitlist' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -2523,32 +2478,28 @@ function submitForm() {
 /* ──── ORDER FORM (product pages) ──── */
 function submitOrder(product) {
   var productNames = {
-    classic: 'The Chicago Classic ($25)',
-    brownie: 'Double Chocolate Marshmallow ($30)'
+    classic: 'The Chicago Classic',
+    brownie: 'Double Chocolate Marshmallow'
   };
   var prefix = 'of-' + product + '-';
   var nameEl  = document.getElementById(prefix + 'name');
   var emailEl = document.getElementById(prefix + 'email');
   var phoneEl = document.getElementById(prefix + 'phone');
-  var qtyEl   = document.getElementById(prefix + 'qty');
   var name  = (nameEl  || {}).value || '';
   var email = (emailEl || {}).value || '';
   var phone = (phoneEl || {}).value || '';
-  var qty   = parseInt((qtyEl || {}).value) || 1;
 
   if (!name.trim()) { showToast('Please enter your name ✍️'); return; }
   if (!email.includes('@')) { showToast('Please enter a valid email ✍️'); return; }
   if (!phone.trim()) { showToast('Please enter your phone number 📱'); return; }
-  if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
-  showToast('Order received' + (first ? ', ' + first : '') + '! We\'ll email you with Zelle details shortly 🍪');
+  showToast('You\'re on the list' + (first ? ', ' + first : '') + '! We\'ll notify you when we restock 🍪');
   if (nameEl)  nameEl.value = '';
   if (emailEl) emailEl.value = '';
   if (phoneEl) phoneEl.value = '';
-  if (qtyEl)   qtyEl.value = '1';
 
-  var data = { _subject: 'New Order Request — ' + productNames[product] + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], quantity: qty, type: 'order' };
+  var data = { _subject: 'Waitlist Signup — ' + productNames[product], name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], type: 'waitlist' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
