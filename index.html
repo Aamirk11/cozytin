@@ -677,12 +677,12 @@ a{text-decoration:none;color:inherit;}
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(100px,20vw,220px);
   font-weight:700;
-  color:var(--border);
+  color:#C4AEA8;
   line-height:.8;letter-spacing:-8px;
   user-select:none;overflow:hidden;
   transition:color .5s;
 }
-.drop-number.lit{color:var(--blush3);}
+.drop-number.lit{color:#B09890;}
 
 .drop-heading-row{
   display:flex;align-items:flex-end;justify-content:space-between;
@@ -1551,20 +1551,38 @@ footer{
 .form-magic-sm .steam-2{left:20px;height:9px;}
 .form-magic-sm .steam-3{left:34px;height:10px;}
 
-/* ──── COUNTDOWN D3 RINGS ──── */
-.countdown-box{position:relative;}
-.cd-ring-svg{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-  opacity:.8;
+/* ──── COUNTDOWN PROGRESS BAR ──── */
+.cd-progress-wrap{
+  max-width:420px;margin:0 auto 28px;
 }
-.cd-ring-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:3;}
-.cd-ring-fill{
-  fill:none;stroke:var(--gold2);stroke-width:3;
-  stroke-linecap:round;
-  transition:stroke-dashoffset .4s ease;
-  filter:drop-shadow(0 0 4px rgba(201,162,39,.3));
+.cd-progress-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:Outfit,sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:8px;
+}
+.cd-progress-track{
+  width:100%;height:6px;border-radius:100px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;position:relative;
+}
+.cd-progress-fill{
+  height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--navy2),var(--gold2));
+  transition:width .8s ease;
+  position:relative;
+}
+.cd-progress-fill::after{
+  content:'';position:absolute;right:0;top:50%;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold2);
+  transform:translateY(-50%);
+  box-shadow:0 0 12px rgba(201,162,39,.5),0 0 24px rgba(201,162,39,.2);
+  animation:progressPulse 2s ease-in-out infinite;
+}
+@keyframes progressPulse{
+  0%,100%{box-shadow:0 0 8px rgba(201,162,39,.4),0 0 20px rgba(201,162,39,.15);}
+  50%{box-shadow:0 0 16px rgba(201,162,39,.7),0 0 32px rgba(201,162,39,.3);}
 }
 </style>
 <!-- Vercel Web Analytics -->
@@ -1675,24 +1693,30 @@ footer{
     <p class="countdown-sub">Pre-order now and pick up a warm tin straight from our kitchen on March 19th.</p>
     <div class="countdown-grid">
       <div class="countdown-box">
-        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-days" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-days">--</div>
         <div class="countdown-label">Days</div>
       </div>
       <div class="countdown-box">
-        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-hrs" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-hrs">--</div>
         <div class="countdown-label">Hours</div>
       </div>
       <div class="countdown-box">
-        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-min" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-min">--</div>
         <div class="countdown-label">Min</div>
       </div>
       <div class="countdown-box">
-        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-sec" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-sec">--</div>
         <div class="countdown-label">Sec</div>
+      </div>
+    </div>
+    <!-- Progress bar -->
+    <div class="cd-progress-wrap">
+      <div class="cd-progress-label">
+        <span>Pre-order window</span>
+        <span id="cd-pct">0%</span>
+      </div>
+      <div class="cd-progress-track">
+        <div class="cd-progress-fill" id="cd-bar" style="width:0%"></div>
       </div>
     </div>
     <button class="countdown-cta" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Pre-Order Your Tin</button>
@@ -2730,31 +2754,19 @@ footer{
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ──── COUNTDOWN TIMER + RING ANIMATION ──── */
+/* ──── COUNTDOWN TIMER + PROGRESS BAR ──── */
 (function() {
   var target = new Date('2026-03-19T19:00:00Z').getTime(); // 1 PM CST = 7 PM UTC
   var dEl = document.getElementById('cd-days');
   var hEl = document.getElementById('cd-hrs');
   var mEl = document.getElementById('cd-min');
   var sEl = document.getElementById('cd-sec');
+  var barEl = document.getElementById('cd-bar');
+  var pctEl = document.getElementById('cd-pct');
 
-  /* Ring elements */
-  var ringD = document.getElementById('ring-days');
-  var ringH = document.getElementById('ring-hrs');
-  var ringM = document.getElementById('ring-min');
-  var ringS = document.getElementById('ring-sec');
-  var circumference = 2 * Math.PI * 46; /* r=46 */
-
-  /* Total countdown span for day ring (from when countdown was set to target) */
-  var countdownStart = new Date('2026-03-06T19:00:00Z').getTime(); /* ~13 days before */
+  /* Pre-order window: ~13 days */
+  var countdownStart = new Date('2026-03-06T19:00:00Z').getTime();
   var totalSpan = target - countdownStart;
-
-  function setRing(el, fraction) {
-    if (!el) return;
-    var dashLen = circumference;
-    el.setAttribute('stroke-dasharray', dashLen);
-    el.setAttribute('stroke-dashoffset', dashLen - (dashLen * Math.min(fraction, 1)));
-  }
 
   function pad(n) { return n < 10 ? '0' + n : n; }
   function tick() {
@@ -2763,7 +2775,8 @@ footer{
     if (diff <= 0) {
       dEl.textContent = '00'; hEl.textContent = '00';
       mEl.textContent = '00'; sEl.textContent = '00';
-      setRing(ringD, 1); setRing(ringH, 1); setRing(ringM, 1); setRing(ringS, 1);
+      if (barEl) barEl.style.width = '100%';
+      if (pctEl) pctEl.textContent = '100%';
       var h = document.querySelector('.countdown-h');
       if (h) h.innerHTML = 'Pickup day<br><em>is here!</em>';
       var sub = document.querySelector('.countdown-sub');
@@ -2783,12 +2796,11 @@ footer{
     mEl.textContent = pad(m);
     sEl.textContent = pad(s);
 
-    /* Animate rings — each fills proportionally */
+    /* Progress bar */
     var elapsed = now - countdownStart;
-    setRing(ringD, Math.max(0, elapsed / totalSpan));
-    setRing(ringH, h / 24);
-    setRing(ringM, m / 60);
-    setRing(ringS, s / 60);
+    var pct = Math.max(0, Math.min(100, (elapsed / totalSpan) * 100));
+    if (barEl) barEl.style.width = pct.toFixed(1) + '%';
+    if (pctEl) pctEl.textContent = Math.round(pct) + '%';
   }
   tick();
   setInterval(tick, 1000);
