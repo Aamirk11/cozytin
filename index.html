@@ -2816,7 +2816,7 @@ function submitForm() {
   if (qtyEl)     qtyEl.value = '1';
 
   var data = { _subject: '🍪 Pre-Order — ' + product + ' x' + qty + ' · March 19 Drop', name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, quantity: qty, type: 'pre-order', drop_date: 'March 19, 2026', pickup_location: 'Morton Grove, IL' };
-  fetch('https://formspree.io/f/mqeykzoo', {
+  fetch('https://formspree.io/f/mlgplgnn', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -2854,7 +2854,7 @@ function submitOrder(product) {
   if (qtyEl)   qtyEl.value = '1';
 
   var data = { _subject: '🍪 Pre-Order — ' + productNames[product] + ' x' + qty + ' · March 19 Drop', name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], quantity: qty, type: 'pre-order', drop_date: 'March 19, 2026', pickup_location: 'Morton Grove, IL' };
-  fetch('https://formspree.io/f/mqeykzoo', {
+  fetch('https://formspree.io/f/mlgplgnn', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
