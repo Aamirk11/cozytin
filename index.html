@@ -1459,6 +1459,107 @@ footer{
   .countdown-grid{gap:10px;}
   .countdown-box{min-width:68px;padding:16px 12px;}
 }
+
+/* ──── FORM MAGIC: WARM TIN + STEAM + SPARKLES + BADGE ──── */
+
+/* Wrapper for the animated elements above forms */
+.form-magic{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:28px;position:relative;
+}
+
+/* ── Warm Tin SVG with Steam ── */
+.warm-tin-wrap{position:relative;width:80px;height:80px;margin-bottom:12px;}
+.warm-tin{
+  width:80px;height:80px;
+  filter:drop-shadow(0 4px 18px rgba(201,162,39,.25));
+  animation:tinFloat 2.6s ease-in-out infinite;
+}
+@keyframes tinFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* Steam wisps */
+.steam{position:absolute;bottom:68px;left:50%;width:2px;border-radius:50%;background:rgba(201,162,39,.35);}
+.steam-1{height:18px;margin-left:-10px;animation:steamRise 2.0s ease-out infinite;}
+.steam-2{height:14px;margin-left:0px;animation:steamRise 2.0s ease-out .5s infinite;}
+.steam-3{height:16px;margin-left:10px;animation:steamRise 2.0s ease-out 1.0s infinite;}
+@keyframes steamRise{
+  0%{opacity:0;transform:translateY(0) scaleX(1);}
+  30%{opacity:.6;}
+  100%{opacity:0;transform:translateY(-28px) scaleX(2.2);}
+}
+
+/* ── Glowing "Fresh Batch" Badge ── */
+.fresh-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:Outfit,sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);
+  background:rgba(201,162,39,.08);
+  border:1.5px solid rgba(201,162,39,.25);
+  padding:7px 18px;border-radius:100px;
+  position:relative;overflow:hidden;
+  animation:badgePulse 3s ease-in-out infinite;
+}
+.fresh-badge::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(201,162,39,.18),transparent);
+  animation:badgeSweep 3s ease-in-out infinite;
+}
+@keyframes badgePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,0);}
+  50%{box-shadow:0 0 18px 4px rgba(201,162,39,.12);}
+}
+@keyframes badgeSweep{
+  0%,60%{left:-100%;}
+  100%{left:200%;}
+}
+
+/* ── Sparkle Particles ── */
+.sparkle-field{
+  position:absolute;top:-10px;left:-20px;right:-20px;bottom:-10px;
+  pointer-events:none;overflow:hidden;
+}
+.sparkle{
+  position:absolute;width:5px;height:5px;border-radius:50%;
+  background:var(--gold);
+  opacity:0;
+  animation:sparkleFlash 2.8s ease-in-out infinite;
+}
+.sparkle::after{
+  content:'';position:absolute;
+  top:50%;left:50%;width:12px;height:1.5px;
+  margin-top:-0.75px;margin-left:-6px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.5;
+}
+.sparkle::before{
+  content:'';position:absolute;
+  top:50%;left:50%;width:1.5px;height:12px;
+  margin-top:-6px;margin-left:-0.75px;
+  background:linear-gradient(180deg,transparent,var(--gold),transparent);
+  opacity:.5;
+}
+.sp1{top:8%;left:5%;animation-delay:0s;}
+.sp2{top:15%;right:8%;animation-delay:.7s;}
+.sp3{bottom:20%;left:10%;animation-delay:1.4s;}
+.sp4{bottom:12%;right:5%;animation-delay:2.1s;}
+.sp5{top:45%;left:2%;animation-delay:.35s;}
+.sp6{top:40%;right:3%;animation-delay:1.8s;}
+@keyframes sparkleFlash{
+  0%,100%{opacity:0;transform:scale(0) rotate(0deg);}
+  50%{opacity:.7;transform:scale(1) rotate(90deg);}
+}
+
+/* ── Product page form: smaller version ── */
+.form-magic-sm{margin-bottom:18px;}
+.form-magic-sm .warm-tin-wrap{width:52px;height:52px;margin-bottom:8px;}
+.form-magic-sm .warm-tin{width:52px;height:52px;}
+.form-magic-sm .steam{bottom:44px;}
+.form-magic-sm .steam-1{height:12px;}
+.form-magic-sm .steam-2{height:10px;}
+.form-magic-sm .steam-3{height:11px;}
+.form-magic-sm .fresh-badge{font-size:9px;padding:5px 14px;letter-spacing:1.5px;}
 </style>
 <!-- Vercel Web Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
@@ -1565,7 +1666,7 @@ footer{
   <section class="countdown-s" id="countdown-s">
     <div class="countdown-eyebrow"><span class="countdown-pulse"></span> &nbsp;Pre-Orders Are Live</div>
     <h2 class="countdown-h">Fresh batch drops<br><em>in</em></h2>
-    <p class="countdown-sub">Pre-order now and pick up a warm tin straight from our kitchen on March 18th.</p>
+    <p class="countdown-sub">Pre-order now and pick up a warm tin straight from our kitchen on March 19th.</p>
     <div class="countdown-grid">
       <div class="countdown-box">
         <div class="countdown-num" id="cd-days">--</div>
@@ -1585,7 +1686,7 @@ footer{
       </div>
     </div>
     <button class="countdown-cta" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Pre-Order Your Tin</button>
-    <div class="countdown-date">Pickup · March 18 · 1:00 PM CST</div>
+    <div class="countdown-date">Pickup · March 19 · 1:00 PM CST</div>
   </section>
 
   <!-- PRODUCT GRID — two products side by side -->
@@ -1673,10 +1774,10 @@ footer{
           <em>Limited quantity available.</em>
         </h2>
         <p class="brownie-body">
-          <strong>Rich fudgy brownies loaded with toasted marshmallow</strong> — packed into the same signature CozyTin you already love. Made from scratch, just like everything we do. Pre-order now — drops March 18th.
+          <strong>Rich fudgy brownies loaded with toasted marshmallow</strong> — packed into the same signature CozyTin you already love. Made from scratch, just like everything we do. Pre-order now — drops March 19th.
         </p>
         <button class="btn-g rv" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
-          Pre-Order Now — Drops March 18
+          Pre-Order Now — Drops March 19
         </button>
       </div>
       <div class="brownie-imgs rv right">
@@ -1727,10 +1828,38 @@ footer{
 
   <!-- ORDER / CONTACT FORM -->
   <section class="contact-s" id="contact-s">
-    <div class="contact-inner rv">
+    <div class="contact-inner rv" style="position:relative;">
+      <!-- Sparkle field over entire section -->
+      <div class="sparkle-field">
+        <div class="sparkle sp1"></div>
+        <div class="sparkle sp2"></div>
+        <div class="sparkle sp3"></div>
+        <div class="sparkle sp4"></div>
+        <div class="sparkle sp5"></div>
+        <div class="sparkle sp6"></div>
+      </div>
+
+      <div class="form-magic">
+        <!-- Warm tin with steam -->
+        <div class="warm-tin-wrap">
+          <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
+            <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
+            <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
+            <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
+            <rect x="20" y="60" width="40" height="4" rx="2" fill="#C9A227" opacity=".12"/>
+          </svg>
+          <div class="steam steam-1"></div>
+          <div class="steam steam-2"></div>
+          <div class="steam steam-3"></div>
+        </div>
+        <!-- Glowing badge -->
+        <div class="fresh-badge">Fresh Batch · March 19</div>
+      </div>
+
       <div class="ey">Pre-Orders Open</div>
       <h2 class="contact-h">Pre-Order Your Tin</h2>
-      <p class="contact-sub">Pick your tin, fill out the form, and we'll confirm your order. Pickup on March 18th — payment via Zelle.</p>
+      <p class="contact-sub">Pick your tin, fill out the form, and we'll confirm your order. Pickup on March 19th — payment via Zelle.</p>
 
       <div class="order-form" style="margin-bottom:0;">
         <div class="steps">
@@ -2076,7 +2205,7 @@ footer{
 
       <!-- RIGHT: product info column -->
       <div class="pd-info-col rv right">
-        <div class="pd-badge">🍪 Pre-Order · Drops March 18</div>
+        <div class="pd-badge">🍪 Pre-Order · Drops March 19</div>
           <h1 class="pd-name">The Chicago<br>Classic</h1>
           <p class="pd-sub">Thick &amp; gooey chocolate chip cookie tin</p>
 
@@ -2133,9 +2262,29 @@ footer{
           </div>
 
           <!-- Order Form -->
-          <div class="pd-actions order-form" id="order-form-classic">
+          <div class="pd-actions order-form" id="order-form-classic" style="position:relative;overflow:visible;">
+            <div class="sparkle-field">
+              <div class="sparkle sp1"></div>
+              <div class="sparkle sp2"></div>
+              <div class="sparkle sp3"></div>
+              <div class="sparkle sp4"></div>
+            </div>
+            <div class="form-magic form-magic-sm">
+              <div class="warm-tin-wrap">
+                <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
+                  <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
+                  <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
+                  <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
+                </svg>
+                <div class="steam steam-1"></div>
+                <div class="steam steam-2"></div>
+                <div class="steam steam-3"></div>
+              </div>
+              <div class="fresh-badge">Fresh Batch</div>
+            </div>
             <div class="order-form-header">
-              <div class="order-form-tag">Pre-Order · Pickup March 18</div>
+              <div class="order-form-tag">Pre-Order · Pickup March 19</div>
               <div class="order-form-title">Reserve yours before they're gone.</div>
               <p class="order-form-desc">Submit your info and we'll confirm your order + send Zelle payment details.</p>
             </div>
@@ -2230,7 +2379,7 @@ footer{
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Don't miss<br><em>this drop.</em></h2>
-      <p class="pd-cta-p">Pre-orders close soon. Reserve your tin for pickup on March 18th.</p>
+      <p class="pd-cta-p">Pre-orders close soon. Reserve your tin for pickup on March 19th.</p>
       <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-classic').scrollIntoView({behavior:'smooth'})">Pre-Order — $25</button>
     </div>
   </section>
@@ -2321,7 +2470,7 @@ footer{
 
       <!-- RIGHT: product info column -->
       <div class="pd-info-col rv right">
-        <div class="pd-badge" style="background:var(--gold);color:#0d0d0d;">🍫 Pre-Order · Drops March 18</div>
+        <div class="pd-badge" style="background:var(--gold);color:#0d0d0d;">🍫 Pre-Order · Drops March 19</div>
           <h1 class="pd-name">Double Chocolate<br>Marshmallow</h1>
           <p class="pd-sub">Fudgy brownies loaded with toasted marshmallow</p>
 
@@ -2333,7 +2482,7 @@ footer{
             </div>
             <div class="pd-stat-div"></div>
             <div class="pd-stat">
-              <div class="pd-stat-n">Mar 18</div>
+              <div class="pd-stat-n">Mar 19</div>
               <div class="pd-stat-l">Drop Date</div>
             </div>
             <div class="pd-stat-div"></div>
@@ -2354,7 +2503,7 @@ footer{
             <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#f0faf5;color:var(--green);font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid rgba(46,125,82,.18);">Available</span>
           </div>
 
-          <p class="pd-desc">Rich, fudgy double chocolate brownies loaded with toasted marshmallow — packed into the same signature CozyTin you already love. Made completely from scratch with real cocoa, real butter, and gooey marshmallow toasted to perfection. Pre-order now — drops March 18th.</p>
+          <p class="pd-desc">Rich, fudgy double chocolate brownies loaded with toasted marshmallow — packed into the same signature CozyTin you already love. Made completely from scratch with real cocoa, real butter, and gooey marshmallow toasted to perfection. Pre-order now — drops March 19th.</p>
 
           <!-- Ingredients -->
           <div class="pd-ings">
@@ -2378,9 +2527,29 @@ footer{
           </div>
 
           <!-- Order Form -->
-          <div class="pd-actions order-form" id="order-form-brownie">
+          <div class="pd-actions order-form" id="order-form-brownie" style="position:relative;overflow:visible;">
+            <div class="sparkle-field">
+              <div class="sparkle sp1"></div>
+              <div class="sparkle sp2"></div>
+              <div class="sparkle sp3"></div>
+              <div class="sparkle sp4"></div>
+            </div>
+            <div class="form-magic form-magic-sm">
+              <div class="warm-tin-wrap">
+                <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
+                  <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
+                  <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
+                  <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
+                </svg>
+                <div class="steam steam-1"></div>
+                <div class="steam steam-2"></div>
+                <div class="steam steam-3"></div>
+              </div>
+              <div class="fresh-badge">Fresh Batch</div>
+            </div>
             <div class="order-form-header">
-              <div class="order-form-tag">Pre-Order · Pickup March 18</div>
+              <div class="order-form-tag">Pre-Order · Pickup March 19</div>
               <div class="order-form-title">Reserve yours before they're gone.</div>
               <p class="order-form-desc">Submit your info and we'll confirm your order + send Zelle payment details.</p>
             </div>
@@ -2475,7 +2644,7 @@ footer{
   <section class="pd-cta-band">
     <div class="pd-cta-inner rv">
       <h2 class="pd-cta-h">Don't miss<br><em>this drop.</em></h2>
-      <p class="pd-cta-p">Pre-orders close soon. Reserve your tin for pickup on March 18th.</p>
+      <p class="pd-cta-p">Pre-orders close soon. Reserve your tin for pickup on March 19th.</p>
       <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-brownie').scrollIntoView({behavior:'smooth'})">Pre-Order — $30</button>
     </div>
   </section>
@@ -2520,7 +2689,7 @@ footer{
 <script>
 /* ──── COUNTDOWN TIMER ──── */
 (function() {
-  var target = new Date('2026-03-18T19:00:00Z').getTime(); // 1 PM CST = 7 PM UTC
+  var target = new Date('2026-03-19T19:00:00Z').getTime(); // 1 PM CST = 7 PM UTC
   var dEl = document.getElementById('cd-days');
   var hEl = document.getElementById('cd-hrs');
   var mEl = document.getElementById('cd-min');
@@ -2639,14 +2808,14 @@ function submitForm() {
   if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
-  showToast('Pre-order placed' + (first ? ', ' + first : '') + '! We\'ll confirm your order shortly 🍪');
+  showToast('You\'re in' + (first ? ', ' + first : '') + '! 🍪 We\'ll confirm your tin for the March 19th drop.');
   if (nameEl)    nameEl.value = '';
   if (emailEl)   emailEl.value = '';
   if (phoneEl)   phoneEl.value = '';
   if (productEl) productEl.value = '';
   if (qtyEl)     qtyEl.value = '1';
 
-  var data = { _subject: 'New Pre-Order — ' + product + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, quantity: qty, type: 'pre-order' };
+  var data = { _subject: '🍪 Pre-Order — ' + product + ' x' + qty + ' · March 19 Drop', name: name.trim(), email: email.trim(), phone: phone.trim(), product: product, quantity: qty, type: 'pre-order', drop_date: 'March 19, 2026', pickup_location: 'Morton Grove, IL' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -2678,13 +2847,13 @@ function submitOrder(product) {
   if (qty < 1) { showToast('Quantity must be at least 1'); return; }
 
   var first = name.trim().split(' ')[0];
-  showToast('Pre-order placed' + (first ? ', ' + first : '') + '! We\'ll confirm your order shortly 🍪');
+  showToast('You\'re in' + (first ? ', ' + first : '') + '! 🍪 We\'ll confirm your tin for the March 19th drop.');
   if (nameEl)  nameEl.value = '';
   if (emailEl) emailEl.value = '';
   if (phoneEl) phoneEl.value = '';
   if (qtyEl)   qtyEl.value = '1';
 
-  var data = { _subject: 'New Pre-Order — ' + productNames[product] + ' x' + qty, name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], quantity: qty, type: 'pre-order' };
+  var data = { _subject: '🍪 Pre-Order — ' + productNames[product] + ' x' + qty + ' · March 19 Drop', name: name.trim(), email: email.trim(), phone: phone.trim(), product: productNames[product], quantity: qty, type: 'pre-order', drop_date: 'March 19, 2026', pickup_location: 'Morton Grove, IL' };
   fetch('https://formspree.io/f/mqeykzoo', {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
