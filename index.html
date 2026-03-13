@@ -1387,6 +1387,77 @@ footer{
 /* Responsive hide */
 .sm-hide{display:none;}
 @media(min-width:640px){.sm-hide{display:flex;}}
+
+/* ──── COUNTDOWN TIMER ──── */
+.countdown-s{
+  background:var(--navy);padding:56px 24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.countdown-s::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.countdown-eyebrow{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold2);margin-bottom:16px;
+  padding:6px 16px;border:1px solid rgba(255,255,255,.12);border-radius:100px;
+  background:rgba(255,255,255,.04);
+}
+.countdown-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,6vw,64px);font-weight:700;
+  color:#fff;letter-spacing:-1.5px;line-height:.92;margin-bottom:8px;
+}
+.countdown-h em{font-style:italic;font-weight:400;color:var(--gold2);}
+.countdown-sub{
+  font-size:15px;color:rgba(255,255,255,.5);margin-bottom:36px;line-height:1.55;
+  max-width:420px;margin-left:auto;margin-right:auto;
+}
+.countdown-grid{
+  display:flex;justify-content:center;gap:16px;margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.countdown-box{
+  min-width:80px;padding:20px 16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;backdrop-filter:blur(8px);
+  transition:transform .3s,border-color .3s;
+}
+.countdown-box:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2);}
+.countdown-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,56px);font-weight:700;
+  color:#fff;line-height:1;margin-bottom:4px;
+  font-variant-numeric:tabular-nums;
+}
+.countdown-label{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,.4);
+}
+.countdown-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:var(--navy);
+  padding:16px 32px;border-radius:100px;
+  font-size:15px;font-weight:800;letter-spacing:.3px;
+  box-shadow:0 6px 24px rgba(0,0,0,.2);
+  transition:all .22s;cursor:pointer;border:none;
+}
+.countdown-cta:hover{background:var(--gold2);color:#fff;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.countdown-pulse{
+  width:8px;height:8px;border-radius:50%;background:#4ade80;
+  animation:cdPulse 2s ease-in-out infinite;
+}
+@keyframes cdPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.countdown-date{
+  font-size:12px;color:rgba(255,255,255,.35);margin-top:20px;
+  font-weight:600;letter-spacing:1px;
+}
+@media(max-width:480px){
+  .countdown-grid{gap:10px;}
+  .countdown-box{min-width:68px;padding:16px 12px;}
+}
 </style>
 <!-- Vercel Web Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
@@ -1487,6 +1558,33 @@ footer{
       <button class="btn-p" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Join the Waitlist</button>
       <button class="btn-o" onclick="goPage('about')">Our Story</button>
     </div>
+  </section>
+
+  <!-- COUNTDOWN TIMER -->
+  <section class="countdown-s" id="countdown-s">
+    <div class="countdown-eyebrow"><span class="countdown-pulse"></span> &nbsp;Next Drop Incoming</div>
+    <h2 class="countdown-h">Pre-orders open<br><em>in</em></h2>
+    <p class="countdown-sub">We sold out. But we're baking more. Be ready when the next drop goes live.</p>
+    <div class="countdown-grid">
+      <div class="countdown-box">
+        <div class="countdown-num" id="cd-days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-num" id="cd-hrs">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-num" id="cd-min">--</div>
+        <div class="countdown-label">Min</div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-num" id="cd-sec">--</div>
+        <div class="countdown-label">Sec</div>
+      </div>
+    </div>
+    <button class="countdown-cta" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Get Notified First</button>
+    <div class="countdown-date">March 18 · 1:00 PM CST</div>
   </section>
 
   <!-- PRODUCT GRID — two products side by side -->
@@ -2382,6 +2480,41 @@ footer{
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
+/* ──── COUNTDOWN TIMER ──── */
+(function() {
+  var target = new Date('2026-03-18T19:00:00Z').getTime(); // 1 PM CST = 7 PM UTC
+  var dEl = document.getElementById('cd-days');
+  var hEl = document.getElementById('cd-hrs');
+  var mEl = document.getElementById('cd-min');
+  var sEl = document.getElementById('cd-sec');
+  function pad(n) { return n < 10 ? '0' + n : n; }
+  function tick() {
+    var now = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      dEl.textContent = '00'; hEl.textContent = '00';
+      mEl.textContent = '00'; sEl.textContent = '00';
+      var h = document.querySelector('.countdown-h');
+      if (h) h.innerHTML = 'Pre-orders are<br><em>live!</em>';
+      var sub = document.querySelector('.countdown-sub');
+      if (sub) sub.textContent = 'The next drop is here. Grab yours before they sell out again.';
+      var cta = document.querySelector('.countdown-cta');
+      if (cta) { cta.textContent = 'Pre-Order Now'; cta.onclick = function() { document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}); }; }
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    dEl.textContent = pad(d);
+    hEl.textContent = pad(h);
+    mEl.textContent = pad(m);
+    sEl.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
 /* ──── ROUTER (hash-based with browser history) ──── */
 function goPage(name, skipPush) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
