@@ -1460,106 +1460,112 @@ footer{
   .countdown-box{min-width:68px;padding:16px 12px;}
 }
 
-/* ──── FORM MAGIC: WARM TIN + STEAM + SPARKLES + BADGE ──── */
+/* ──── FORM MAGIC v2: COOKIE + CRUMBS + BADGE ──── */
 
-/* Wrapper for the animated elements above forms */
+/* Wrapper */
 .form-magic{
   display:flex;flex-direction:column;align-items:center;
-  margin-bottom:28px;position:relative;
+  margin-bottom:24px;position:relative;
 }
 
-/* ── Warm Tin SVG with Steam ── */
-.warm-tin-wrap{position:relative;width:80px;height:80px;margin-bottom:12px;}
-.warm-tin{
-  width:80px;height:80px;
-  filter:drop-shadow(0 4px 18px rgba(201,162,39,.25));
-  animation:tinFloat 2.6s ease-in-out infinite;
+/* ── Cute Cookie SVG ── */
+.cookie-illust{
+  width:110px;height:110px;margin-bottom:14px;position:relative;
+  animation:cookieWobble 3s ease-in-out infinite;
 }
-@keyframes tinFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes cookieWobble{
+  0%,100%{transform:rotate(-2deg) translateY(0);}
+  25%{transform:rotate(1deg) translateY(-4px);}
+  50%{transform:rotate(-1deg) translateY(-2px);}
+  75%{transform:rotate(2deg) translateY(-5px);}
+}
 
-/* Steam wisps */
-.steam{position:absolute;bottom:68px;left:50%;width:2px;border-radius:50%;background:rgba(201,162,39,.35);}
-.steam-1{height:18px;margin-left:-10px;animation:steamRise 2.0s ease-out infinite;}
-.steam-2{height:14px;margin-left:0px;animation:steamRise 2.0s ease-out .5s infinite;}
-.steam-3{height:16px;margin-left:10px;animation:steamRise 2.0s ease-out 1.0s infinite;}
-@keyframes steamRise{
+/* Crumb particles floating off the cookie */
+.crumb-field{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;}
+.crumb{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:#8B6914;opacity:0;
+}
+.crumb-1{bottom:15%;left:10%;animation:crumbFloat 3s ease-out 0s infinite;}
+.crumb-2{bottom:20%;right:12%;animation:crumbFloat 3s ease-out .8s infinite;}
+.crumb-3{bottom:10%;left:30%;animation:crumbFloat 3s ease-out 1.6s infinite;}
+.crumb-4{bottom:18%;right:28%;animation:crumbFloat 3s ease-out 2.2s infinite;}
+.crumb-5{bottom:25%;left:50%;animation:crumbFloat 3s ease-out .4s infinite;}
+@keyframes crumbFloat{
+  0%{opacity:0;transform:translate(0,0) scale(1);}
+  20%{opacity:.8;}
+  100%{opacity:0;transform:translate(var(--cx,8px),20px) scale(.4);}
+}
+.crumb-1{--cx:-12px;}.crumb-2{--cx:14px;}.crumb-3{--cx:-6px;}.crumb-4{--cx:10px;}.crumb-5{--cx:-3px;}
+
+/* Steam wisps — warm brown, more visible */
+.steam-wrap{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:60px;height:30px;}
+.steam{
+  position:absolute;bottom:0;width:2.5px;border-radius:50%;
+  background:var(--navy);opacity:0;
+}
+.steam-1{height:16px;left:10px;animation:steamUp 2.2s ease-out infinite;}
+.steam-2{height:12px;left:28px;animation:steamUp 2.2s ease-out .6s infinite;}
+.steam-3{height:14px;left:46px;animation:steamUp 2.2s ease-out 1.2s infinite;}
+@keyframes steamUp{
   0%{opacity:0;transform:translateY(0) scaleX(1);}
-  30%{opacity:.6;}
-  100%{opacity:0;transform:translateY(-28px) scaleX(2.2);}
+  25%{opacity:.25;}
+  100%{opacity:0;transform:translateY(-22px) scaleX(2.5);}
 }
 
-/* ── Glowing "Fresh Batch" Badge ── */
+/* ── Navy "Fresh Batch" Badge ── */
 .fresh-badge{
-  display:inline-flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:7px;
   font-family:Outfit,sans-serif;font-size:11px;font-weight:800;
   letter-spacing:2px;text-transform:uppercase;
-  color:var(--gold);
-  background:rgba(201,162,39,.08);
-  border:1.5px solid rgba(201,162,39,.25);
-  padding:7px 18px;border-radius:100px;
+  color:#fff;
+  background:var(--navy);
+  padding:8px 20px;border-radius:100px;
   position:relative;overflow:hidden;
-  animation:badgePulse 3s ease-in-out infinite;
+  box-shadow:0 4px 16px rgba(27,58,107,.25);
+  animation:badgeGlow 3s ease-in-out infinite;
 }
 .fresh-badge::before{
   content:'';position:absolute;top:0;left:-100%;
-  width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(201,162,39,.18),transparent);
+  width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
   animation:badgeSweep 3s ease-in-out infinite;
 }
-@keyframes badgePulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,0);}
-  50%{box-shadow:0 0 18px 4px rgba(201,162,39,.12);}
+.fresh-badge-dot{
+  width:7px;height:7px;border-radius:50%;background:#4ade80;
+  animation:dotPulse 2s ease-in-out infinite;
 }
-@keyframes badgeSweep{
-  0%,60%{left:-100%;}
-  100%{left:200%;}
+@keyframes badgeGlow{
+  0%,100%{box-shadow:0 4px 16px rgba(27,58,107,.25);}
+  50%{box-shadow:0 4px 28px rgba(27,58,107,.45);}
 }
+@keyframes badgeSweep{0%,55%{left:-100%;}100%{left:200%;}}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
 
-/* ── Sparkle Particles ── */
-.sparkle-field{
-  position:absolute;top:-10px;left:-20px;right:-20px;bottom:-10px;
-  pointer-events:none;overflow:hidden;
-}
-.sparkle{
-  position:absolute;width:5px;height:5px;border-radius:50%;
-  background:var(--gold);
-  opacity:0;
-  animation:sparkleFlash 2.8s ease-in-out infinite;
-}
-.sparkle::after{
-  content:'';position:absolute;
-  top:50%;left:50%;width:12px;height:1.5px;
-  margin-top:-0.75px;margin-left:-6px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.5;
-}
-.sparkle::before{
-  content:'';position:absolute;
-  top:50%;left:50%;width:1.5px;height:12px;
-  margin-top:-6px;margin-left:-0.75px;
-  background:linear-gradient(180deg,transparent,var(--gold),transparent);
-  opacity:.5;
-}
-.sp1{top:8%;left:5%;animation-delay:0s;}
-.sp2{top:15%;right:8%;animation-delay:.7s;}
-.sp3{bottom:20%;left:10%;animation-delay:1.4s;}
-.sp4{bottom:12%;right:5%;animation-delay:2.1s;}
-.sp5{top:45%;left:2%;animation-delay:.35s;}
-.sp6{top:40%;right:3%;animation-delay:1.8s;}
-@keyframes sparkleFlash{
-  0%,100%{opacity:0;transform:scale(0) rotate(0deg);}
-  50%{opacity:.7;transform:scale(1) rotate(90deg);}
-}
+/* ── Product page form: compact version ── */
+.form-magic-sm{margin-bottom:14px;}
+.form-magic-sm .cookie-illust{width:72px;height:72px;margin-bottom:10px;}
+.form-magic-sm .fresh-badge{font-size:9px;padding:6px 16px;letter-spacing:1.5px;}
+.form-magic-sm .steam-wrap{width:44px;height:22px;}
+.form-magic-sm .steam-1{left:6px;height:12px;}
+.form-magic-sm .steam-2{left:20px;height:9px;}
+.form-magic-sm .steam-3{left:34px;height:10px;}
 
-/* ── Product page form: smaller version ── */
-.form-magic-sm{margin-bottom:18px;}
-.form-magic-sm .warm-tin-wrap{width:52px;height:52px;margin-bottom:8px;}
-.form-magic-sm .warm-tin{width:52px;height:52px;}
-.form-magic-sm .steam{bottom:44px;}
-.form-magic-sm .steam-1{height:12px;}
-.form-magic-sm .steam-2{height:10px;}
-.form-magic-sm .steam-3{height:11px;}
-.form-magic-sm .fresh-badge{font-size:9px;padding:5px 14px;letter-spacing:1.5px;}
+/* ──── COUNTDOWN D3 RINGS ──── */
+.countdown-box{position:relative;}
+.cd-ring-svg{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  opacity:.8;
+}
+.cd-ring-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:3;}
+.cd-ring-fill{
+  fill:none;stroke:var(--gold2);stroke-width:3;
+  stroke-linecap:round;
+  transition:stroke-dashoffset .4s ease;
+  filter:drop-shadow(0 0 4px rgba(201,162,39,.3));
+}
 </style>
 <!-- Vercel Web Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
@@ -1669,18 +1675,22 @@ footer{
     <p class="countdown-sub">Pre-order now and pick up a warm tin straight from our kitchen on March 19th.</p>
     <div class="countdown-grid">
       <div class="countdown-box">
+        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-days" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-days">--</div>
         <div class="countdown-label">Days</div>
       </div>
       <div class="countdown-box">
+        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-hrs" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-hrs">--</div>
         <div class="countdown-label">Hours</div>
       </div>
       <div class="countdown-box">
+        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-min" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-min">--</div>
         <div class="countdown-label">Min</div>
       </div>
       <div class="countdown-box">
+        <svg class="cd-ring-svg" width="100" height="100" viewBox="0 0 100 100"><circle class="cd-ring-bg" cx="50" cy="50" r="46"/><circle class="cd-ring-fill" id="ring-sec" cx="50" cy="50" r="46" transform="rotate(-90 50 50)"/></svg>
         <div class="countdown-num" id="cd-sec">--</div>
         <div class="countdown-label">Sec</div>
       </div>
@@ -1828,33 +1838,54 @@ footer{
 
   <!-- ORDER / CONTACT FORM -->
   <section class="contact-s" id="contact-s">
-    <div class="contact-inner rv" style="position:relative;">
-      <!-- Sparkle field over entire section -->
-      <div class="sparkle-field">
-        <div class="sparkle sp1"></div>
-        <div class="sparkle sp2"></div>
-        <div class="sparkle sp3"></div>
-        <div class="sparkle sp4"></div>
-        <div class="sparkle sp5"></div>
-        <div class="sparkle sp6"></div>
-      </div>
+    <div class="contact-inner rv">
 
       <div class="form-magic">
-        <!-- Warm tin with steam -->
-        <div class="warm-tin-wrap">
-          <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
-            <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
-            <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
-            <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
-            <rect x="20" y="60" width="40" height="4" rx="2" fill="#C9A227" opacity=".12"/>
+        <!-- Cookie illustration with steam + crumbs -->
+        <div class="cookie-illust">
+          <div class="steam-wrap">
+            <div class="steam steam-1"></div>
+            <div class="steam steam-2"></div>
+            <div class="steam steam-3"></div>
+          </div>
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cookie body -->
+            <circle cx="55" cy="58" r="42" fill="#D4A054"/>
+            <circle cx="55" cy="58" r="42" fill="url(#cookieGrad)"/>
+            <!-- Golden baked edge -->
+            <circle cx="55" cy="58" r="42" fill="none" stroke="#B8862D" stroke-width="2.5" opacity=".5"/>
+            <!-- Chocolate chips -->
+            <ellipse cx="38" cy="48" rx="6" ry="5" fill="#3D1F0B" opacity=".85" transform="rotate(-15 38 48)"/>
+            <ellipse cx="65" cy="42" rx="5.5" ry="4.5" fill="#3D1F0B" opacity=".8" transform="rotate(20 65 42)"/>
+            <ellipse cx="50" cy="68" rx="6.5" ry="5" fill="#3D1F0B" opacity=".85" transform="rotate(-8 50 68)"/>
+            <ellipse cx="72" cy="62" rx="5" ry="4.5" fill="#3D1F0B" opacity=".75" transform="rotate(12 72 62)"/>
+            <ellipse cx="42" cy="76" rx="4.5" ry="4" fill="#3D1F0B" opacity=".7" transform="rotate(-20 42 76)"/>
+            <ellipse cx="62" cy="80" rx="5" ry="4" fill="#3D1F0B" opacity=".65" transform="rotate(5 62 80)"/>
+            <ellipse cx="78" cy="50" rx="4" ry="3.5" fill="#3D1F0B" opacity=".6" transform="rotate(30 78 50)"/>
+            <!-- Bite taken out -->
+            <circle cx="88" cy="38" r="14" fill="var(--blush2)"/>
+            <!-- Dough texture spots -->
+            <circle cx="45" cy="55" r="2" fill="#C49340" opacity=".4"/>
+            <circle cx="60" cy="52" r="1.5" fill="#C49340" opacity=".35"/>
+            <circle cx="55" cy="72" r="1.8" fill="#C49340" opacity=".3"/>
+            <defs>
+              <radialGradient id="cookieGrad" cx="45%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#E8BE6A" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#B8862D" stop-opacity=".15"/>
+              </radialGradient>
+            </defs>
           </svg>
-          <div class="steam steam-1"></div>
-          <div class="steam steam-2"></div>
-          <div class="steam steam-3"></div>
+          <!-- Floating crumbs -->
+          <div class="crumb-field">
+            <div class="crumb crumb-1"></div>
+            <div class="crumb crumb-2"></div>
+            <div class="crumb crumb-3"></div>
+            <div class="crumb crumb-4"></div>
+            <div class="crumb crumb-5"></div>
+          </div>
         </div>
-        <!-- Glowing badge -->
-        <div class="fresh-badge">Fresh Batch · March 19</div>
+        <!-- Badge -->
+        <div class="fresh-badge"><span class="fresh-badge-dot"></span>Fresh Batch · March 19</div>
       </div>
 
       <div class="ey">Pre-Orders Open</div>
@@ -2262,26 +2293,30 @@ footer{
           </div>
 
           <!-- Order Form -->
-          <div class="pd-actions order-form" id="order-form-classic" style="position:relative;overflow:visible;">
-            <div class="sparkle-field">
-              <div class="sparkle sp1"></div>
-              <div class="sparkle sp2"></div>
-              <div class="sparkle sp3"></div>
-              <div class="sparkle sp4"></div>
-            </div>
+          <div class="pd-actions order-form" id="order-form-classic">
             <div class="form-magic form-magic-sm">
-              <div class="warm-tin-wrap">
-                <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
-                  <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
-                  <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
-                  <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
+              <div class="cookie-illust">
+                <div class="steam-wrap">
+                  <div class="steam steam-1"></div>
+                  <div class="steam steam-2"></div>
+                  <div class="steam steam-3"></div>
+                </div>
+                <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="55" cy="58" r="42" fill="#D4A054"/>
+                  <circle cx="55" cy="58" r="42" fill="none" stroke="#B8862D" stroke-width="2.5" opacity=".5"/>
+                  <ellipse cx="38" cy="48" rx="6" ry="5" fill="#3D1F0B" opacity=".85" transform="rotate(-15 38 48)"/>
+                  <ellipse cx="65" cy="42" rx="5.5" ry="4.5" fill="#3D1F0B" opacity=".8" transform="rotate(20 65 42)"/>
+                  <ellipse cx="50" cy="68" rx="6.5" ry="5" fill="#3D1F0B" opacity=".85" transform="rotate(-8 50 68)"/>
+                  <ellipse cx="72" cy="62" rx="5" ry="4.5" fill="#3D1F0B" opacity=".75" transform="rotate(12 72 62)"/>
+                  <circle cx="88" cy="38" r="14" fill="var(--blush)"/>
                 </svg>
-                <div class="steam steam-1"></div>
-                <div class="steam steam-2"></div>
-                <div class="steam steam-3"></div>
+                <div class="crumb-field">
+                  <div class="crumb crumb-1"></div>
+                  <div class="crumb crumb-2"></div>
+                  <div class="crumb crumb-3"></div>
+                </div>
               </div>
-              <div class="fresh-badge">Fresh Batch</div>
+              <div class="fresh-badge"><span class="fresh-badge-dot"></span>Fresh Batch</div>
             </div>
             <div class="order-form-header">
               <div class="order-form-tag">Pre-Order · Pickup March 19</div>
@@ -2527,26 +2562,34 @@ footer{
           </div>
 
           <!-- Order Form -->
-          <div class="pd-actions order-form" id="order-form-brownie" style="position:relative;overflow:visible;">
-            <div class="sparkle-field">
-              <div class="sparkle sp1"></div>
-              <div class="sparkle sp2"></div>
-              <div class="sparkle sp3"></div>
-              <div class="sparkle sp4"></div>
-            </div>
+          <div class="pd-actions order-form" id="order-form-brownie">
             <div class="form-magic form-magic-sm">
-              <div class="warm-tin-wrap">
-                <svg class="warm-tin" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="14" y="28" width="52" height="36" rx="6" fill="#C9A227" opacity=".15" stroke="#C9A227" stroke-width="2"/>
-                  <rect x="18" y="24" width="44" height="8" rx="3" fill="#C9A227" opacity=".25" stroke="#C9A227" stroke-width="1.5"/>
-                  <circle cx="40" cy="46" r="8" fill="none" stroke="#C9A227" stroke-width="1.8" opacity=".5"/>
-                  <text x="40" y="50" text-anchor="middle" font-size="9" font-weight="700" fill="#C9A227" font-family="Outfit,sans-serif" opacity=".7">CT</text>
+              <div class="cookie-illust">
+                <div class="steam-wrap">
+                  <div class="steam steam-1"></div>
+                  <div class="steam steam-2"></div>
+                  <div class="steam steam-3"></div>
+                </div>
+                <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Brownie version — darker, square-ish -->
+                  <rect x="16" y="22" rx="10" width="78" height="66" fill="#3D1F0B"/>
+                  <rect x="16" y="22" rx="10" width="78" height="66" fill="none" stroke="#2A1508" stroke-width="2" opacity=".5"/>
+                  <!-- Marshmallow swirls -->
+                  <ellipse cx="40" cy="50" rx="10" ry="7" fill="#F5E6D0" opacity=".7" transform="rotate(-10 40 50)"/>
+                  <ellipse cx="68" cy="45" rx="8" ry="6" fill="#F5E6D0" opacity=".6" transform="rotate(15 68 45)"/>
+                  <ellipse cx="55" cy="70" rx="9" ry="6.5" fill="#F5E6D0" opacity=".65" transform="rotate(-5 55 70)"/>
+                  <!-- Chocolate drizzle -->
+                  <path d="M30 35 Q45 32 60 36 Q75 40 85 35" stroke="#2A1508" stroke-width="2.5" fill="none" opacity=".4" stroke-linecap="round"/>
+                  <!-- Bite -->
+                  <circle cx="88" cy="30" r="13" fill="var(--blush)"/>
                 </svg>
-                <div class="steam steam-1"></div>
-                <div class="steam steam-2"></div>
-                <div class="steam steam-3"></div>
+                <div class="crumb-field">
+                  <div class="crumb crumb-1" style="background:#2A1508;"></div>
+                  <div class="crumb crumb-2" style="background:#2A1508;"></div>
+                  <div class="crumb crumb-3" style="background:#2A1508;"></div>
+                </div>
               </div>
-              <div class="fresh-badge">Fresh Batch</div>
+              <div class="fresh-badge"><span class="fresh-badge-dot"></span>Fresh Batch</div>
             </div>
             <div class="order-form-header">
               <div class="order-form-tag">Pre-Order · Pickup March 19</div>
@@ -2687,13 +2730,32 @@ footer{
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ──── COUNTDOWN TIMER ──── */
+/* ──── COUNTDOWN TIMER + RING ANIMATION ──── */
 (function() {
   var target = new Date('2026-03-19T19:00:00Z').getTime(); // 1 PM CST = 7 PM UTC
   var dEl = document.getElementById('cd-days');
   var hEl = document.getElementById('cd-hrs');
   var mEl = document.getElementById('cd-min');
   var sEl = document.getElementById('cd-sec');
+
+  /* Ring elements */
+  var ringD = document.getElementById('ring-days');
+  var ringH = document.getElementById('ring-hrs');
+  var ringM = document.getElementById('ring-min');
+  var ringS = document.getElementById('ring-sec');
+  var circumference = 2 * Math.PI * 46; /* r=46 */
+
+  /* Total countdown span for day ring (from when countdown was set to target) */
+  var countdownStart = new Date('2026-03-06T19:00:00Z').getTime(); /* ~13 days before */
+  var totalSpan = target - countdownStart;
+
+  function setRing(el, fraction) {
+    if (!el) return;
+    var dashLen = circumference;
+    el.setAttribute('stroke-dasharray', dashLen);
+    el.setAttribute('stroke-dashoffset', dashLen - (dashLen * Math.min(fraction, 1)));
+  }
+
   function pad(n) { return n < 10 ? '0' + n : n; }
   function tick() {
     var now = Date.now();
@@ -2701,6 +2763,7 @@ footer{
     if (diff <= 0) {
       dEl.textContent = '00'; hEl.textContent = '00';
       mEl.textContent = '00'; sEl.textContent = '00';
+      setRing(ringD, 1); setRing(ringH, 1); setRing(ringM, 1); setRing(ringS, 1);
       var h = document.querySelector('.countdown-h');
       if (h) h.innerHTML = 'Pickup day<br><em>is here!</em>';
       var sub = document.querySelector('.countdown-sub');
@@ -2719,6 +2782,13 @@ footer{
     hEl.textContent = pad(h);
     mEl.textContent = pad(m);
     sEl.textContent = pad(s);
+
+    /* Animate rings — each fills proportionally */
+    var elapsed = now - countdownStart;
+    setRing(ringD, Math.max(0, elapsed / totalSpan));
+    setRing(ringH, h / 24);
+    setRing(ringM, m / 60);
+    setRing(ringS, s / 60);
   }
   tick();
   setInterval(tick, 1000);
