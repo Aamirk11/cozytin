@@ -1536,6 +1536,7 @@ footer{
       </button>
     </div>
     <button class="ditem" onclick="goPage('home');closeDrawer()"><span class="di">🏠</span>Home</button>
+    <button class="ditem" onclick="goPage('cookiescream');closeDrawer()"><span class="di">🖤</span>Cookies &amp; Cream Tin</button>
     <button class="ditem" onclick="goPage('dotcake');closeDrawer()"><span class="di">🎉</span>Dot Cake Tin</button>
     <button class="ditem" onclick="goPage('dubai');closeDrawer()"><span class="di">🍫</span>Dubai Chocolate Tin</button>
     <button class="ditem" onclick="goPage('product');closeDrawer()"><span class="di">🍪</span>The Chicago Classic</button>
@@ -1549,7 +1550,7 @@ footer{
         🔔 Get Early Access
       </button>
     </div>
-    <div class="dcta"><button onclick="goPage('dotcake');closeDrawer()">Order the Dot Cake Tin →</button></div>
+    <div class="dcta"><button onclick="goPage('cookiescream');closeDrawer()">Order the Cookies &amp; Cream Tin →</button></div>
   </div>
 </div>
 
@@ -1614,7 +1615,7 @@ footer{
   <!-- INTRO -->
   <section class="intro">
     <h1 class="intro-h rv">Homemade<br><em>with love.</em></h1>
-    <p class="intro-sub rv d1">Soft, homemade cakes and cookies baked completely from scratch. Every tin made with care, ready for pickup in Morton Grove. Our Dot Cake Tin is here for a limited time only!</p>
+    <p class="intro-sub rv d1">Soft, homemade cakes and cookies baked completely from scratch. Every tin made with care, ready for pickup in Morton Grove. Our Cookies &amp; Cream Tin just dropped!</p>
     <div class="intro-btns rv d2">
       <button class="btn-p" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">Order Now</button>
       <button class="btn-o" onclick="goPage('about')">Our Story</button>
@@ -1626,8 +1627,25 @@ footer{
   <section class="products-grid" id="products">
     <div class="products-wrap">
 
+      <!-- Cookies & Cream Tin — NEW DROP -->
+      <div class="prod-card rv left" onclick="goPage('cookiescream')">
+        <div class="prod-card-img">
+          <img src="images/cookies-cream.jpg" alt="Cookies &amp; Cream Tin — cookies and cream cookies in a Cozy Tin">
+          <div class="prod-card-badge" style="background:var(--green);color:#fff;">New Drop</div>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-card-tag">Just Launched 🖤</div>
+          <h2 class="prod-card-name">Cookies &amp; Cream<br><em>Tin</em></h2>
+          <div class="prod-card-price">$35</div>
+          <p class="prod-card-desc">Thick, soft cookies loaded with crushed cookies-and-cream, white chocolate, and a melted milk chocolate top — packed into our signature Cozy Tin.</p>
+          <div class="prod-card-foot">
+            <button class="btn-p" onclick="event.stopPropagation();goPage('cookiescream')">Order Now — $35</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Dot Cake Tin — NEW limited-time product -->
-      <div class="prod-card rv left" onclick="goPage('dotcake')">
+      <div class="prod-card rv right" onclick="goPage('dotcake')">
         <div class="prod-card-img">
           <img src="images/dot-cake-tin.png" alt="Dot Cake Tin — vanilla sprinkle cake in a Cozy Tin">
           <div class="prod-card-badge" style="background:var(--gold);color:#fff;">Limited Time Only</div>
@@ -1841,7 +1859,7 @@ footer{
 
       <div class="ey">Limited Time Only · New Drops</div>
       <h2 class="contact-h">Order Your Tin</h2>
-      <p class="contact-sub">Our new limited-time tins — the Dot Cake Tin and the Dubai Chocolate Tin — are here for a limited time only. Pick your tin below and we'll confirm your pickup. Payment via Zelle.</p>
+      <p class="contact-sub">Our newest drop — the Cookies &amp; Cream Tin — just landed, alongside the Dot Cake Tin and the Dubai Chocolate Tin. Pick your tin below and we'll confirm your pickup. Payment via Zelle.</p>
 
       <div class="order-form" style="margin-bottom:0;">
         <div class="steps">
@@ -1864,6 +1882,7 @@ footer{
             <label class="fl" for="gf-tin">Which Tin?</label>
             <select class="fi" id="gf-tin" style="cursor:pointer;" required>
               <option value="">Choose your tin...</option>
+              <option value="Cookies &amp; Cream Tin ($35.00)">Cookies &amp; Cream Tin — $35</option>
               <option value="Dot Cake Tin ($35.00)">Dot Cake Tin — $35</option>
               <option value="Dubai Chocolate Tin ($35.00)">Dubai Chocolate Tin — $35</option>
             </select>
@@ -1929,7 +1948,7 @@ footer{
       <div class="drop-status rv">
         <div>
           <div class="ds-label">This Drop</div>
-          <div class="ds-val">Dot Cake Tin — <span>Limited Time Only</span></div>
+          <div class="ds-val">Cookies &amp; Cream Tin — <span>New Drop</span></div>
           <div class="ds-live"><span class="live-dot" style="background:var(--green);"></span>Now taking orders · Pickup in Morton Grove</div>
         </div>
         <button class="btn-g" onclick="document.getElementById('contact-s').scrollIntoView({behavior:'smooth'})">
@@ -2006,6 +2025,7 @@ footer{
         <div class="flinks">
           <button class="flink" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</button>
           <button class="flink" onclick="goPage('about')">Our Story</button>
+          <button class="flink" onclick="goPage('cookiescream')">Cookies &amp; Cream Tin</button>
           <button class="flink" onclick="goPage('dotcake')">Dot Cake Tin</button>
           <button class="flink" onclick="goPage('dubai')">Dubai Chocolate Tin</button>
           <button class="flink" onclick="goPage('product')">The Chicago Classic</button>
@@ -2156,7 +2176,7 @@ footer{
   <section class="about-cta">
     <div class="ey rv" style="justify-content:center;">Ready?</div>
     <h2 class="about-cta-h rv d1">Ready to get<br>your tin?</h2>
-    <p class="about-cta-sub rv d2">Order your Dot Cake Tin — here for a limited time only.</p>
+    <p class="about-cta-sub rv d2">Order your Cookies &amp; Cream Tin — our newest drop, fresh out of the kitchen.</p>
     <div class="about-cta-btns rv d3">
       <button class="btn-p" onclick="goPage('home');setTimeout(()=>document.getElementById('contact-s').scrollIntoView({behavior:'smooth'}),100)">🛒 Order Now — $35</button>
       <button class="btn-o" onclick="goPage('product')">View The Classic</button>
@@ -2476,6 +2496,321 @@ footer{
           <button class="flink" onclick="goPage('home')">Home</button>
           <button class="flink" onclick="goPage('about')">Our Story</button>
           <button class="flink" onclick="goPage('product')" style="color:rgba(255,255,255,.75)">The Classic</button>
+        </div>
+      </div>
+      <div>
+        <div class="fcol-t">Contact</div>
+        <div class="flinks">
+          <a class="flink" href="mailto:thecozytin@gmail.com">thecozytin@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">
+      <span class="fcopy">© 2026 CozyTin · All rights reserved</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/thecozytin/" target="_blank" rel="noopener" class="soc" aria-label="Instagram"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.tiktok.com/@cozy.tin" target="_blank" rel="noopener" class="soc" aria-label="TikTok"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77-.39 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.03-7.29a8.24 8.24 0 0 0 4.84 1.55V6.12a4.85 4.85 0 0 1-1.04-.43z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============================
+     COOKIES & CREAM TIN PRODUCT PAGE
+     ============================ -->
+<div class="page" id="page-cookiescream">
+  <div class="ann">Handmade from scratch · Pickup in Morton Grove, IL · <strong>thecozytin@gmail.com</strong></div>
+  <nav class="nav" id="nav-cookiescream">
+    <div class="ngroup">
+      <button class="ham" onclick="openDrawer()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="ngroup mid">
+      <div class="logo" onclick="goPage('home')">
+        <img src="images/nav-logo.png" alt="CozyTin" class="nav-logo-img">
+      </div>
+    </div>
+    <div class="ngroup end"></div>
+  </nav>
+  <div class="subnav">
+    <a class="subnav-email" href="mailto:thecozytin@gmail.com">thecozytin@gmail.com</a>
+    <div class="subnav-div"></div>
+    <div class="subnav-soc">
+      <a href="https://www.instagram.com/thecozytin/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@cozy.tin" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77-.39 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.03-7.29a8.24 8.24 0 0 0 4.84 1.55V6.12a4.85 4.85 0 0 1-1.04-.43z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="pd-page">
+    <div style="max-width:1240px;margin:0 auto;padding:0 24px;">
+      <div class="pd-crumb">
+        <button onclick="goPage('home')">Home</button>
+        <span class="pd-crumb-sep">›</span>
+        <span style="color:var(--navy);font-weight:600;">Cookies &amp; Cream Tin</span>
+      </div>
+    </div>
+    <div class="pd-main">
+      <!-- LEFT: photos -->
+      <div>
+        <div class="pd-photo rv left">
+          <img src="images/cookies-cream.jpg" alt="Cookies &amp; Cream Tin — cookies and cream cookies in a Cozy Tin">
+        </div>
+        <div class="pd-photo rv left" style="margin-top:16px;">
+          <img src="images/cookies-cream-2.jpg" alt="Cookies &amp; Cream Cookie close-up — crushed cookies and melted chocolate">
+        </div>
+        <!-- Extra photo gallery -->
+        <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+          <div style="aspect-ratio:1;border-radius:var(--r-lg);overflow:hidden;background:#F2E4DE;border:1px solid var(--border);">
+            <img src="images/cookies-cream-3.jpg" alt="Cookies &amp; Cream Tin — full tin from above" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="aspect-ratio:1;border-radius:var(--r-lg);overflow:hidden;background:#F2E4DE;border:1px solid var(--border);">
+            <img src="images/cookies-cream-4.jpg" alt="Cookies &amp; Cream Tin with CozyTin gift bag" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: product info column -->
+      <div class="pd-info-col rv right">
+        <div class="pd-badge" style="background:var(--green);color:#fff;">🖤 New Drop</div>
+          <h1 class="pd-name">Cookies &amp; Cream<br>Tin</h1>
+          <p class="pd-sub">Crushed cookies-and-cream baked into a thick, soft cookie</p>
+
+          <!-- Stat pills — always visible -->
+          <div class="pd-stats">
+            <div class="pd-stat">
+              <div class="pd-stat-n">$35</div>
+              <div class="pd-stat-l">Per Tin</div>
+            </div>
+            <div class="pd-stat-div"></div>
+            <div class="pd-stat">
+              <div class="pd-stat-n">Scratch</div>
+              <div class="pd-stat-l">Every Batch</div>
+            </div>
+            <div class="pd-stat-div"></div>
+            <div class="pd-stat">
+              <div class="pd-stat-n">Pickup</div>
+              <div class="pd-stat-l">Morton Grove</div>
+            </div>
+            <div class="pd-stat-div"></div>
+            <div class="pd-stat">
+              <div class="pd-stat-n">🖤</div>
+              <div class="pd-stat-l">Cookies &amp; Cream</div>
+            </div>
+          </div>
+
+          <!-- Price row -->
+          <div class="pd-price-row">
+            <span class="pd-price">$35</span>
+            <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#E8F3EC;color:#2E7D52;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 14px;border-radius:100px;border:1px solid rgba(46,125,82,.3);">✨ Just Launched</span>
+          </div>
+
+          <p class="pd-desc">Our newest drop. Thick, soft-baked cookies packed with crushed cookies-and-cream and white chocolate, finished with a melted milk chocolate top and chocolate drops. Speckled through and through, and made completely from scratch. Order ahead and pick up fresh in Morton Grove.</p>
+
+          <!-- Ingredients — visible, not hidden in accordion -->
+          <div class="pd-ings">
+            <div class="pd-ings-label">What goes in</div>
+            <div class="ing-pills">
+              <span class="ing-pill">Real Butter</span>
+              <span class="ing-pill">Farm Eggs</span>
+              <span class="ing-pill">Cookies &amp; Cream</span>
+              <span class="ing-pill">White Chocolate</span>
+              <span class="ing-pill">Milk Chocolate</span>
+              <span class="ing-pill">Pure Vanilla</span>
+              <span class="ing-pill">Unbleached Flour</span>
+              <span class="ing-pill green">No Preservatives</span>
+            </div>
+            <div style="margin-top:14px;padding:12px 16px;background:#FFF8E1;border:1.5px solid #FFD54F;border-radius:12px;display:flex;align-items:flex-start;gap:10px;">
+              <span style="font-size:18px;line-height:1;">⚠️</span>
+              <p style="font-size:13px;color:#5D4037;margin:0;line-height:1.5;font-weight:500;">
+                <strong>Allergen Notice:</strong> This product contains dairy, eggs, wheat, and soy, and is baked in a kitchen that also handles tree nuts. If you have any allergies, please inquire beforehand by emailing <a href="mailto:thecozytin@gmail.com" style="color:inherit;text-decoration:underline;">thecozytin@gmail.com</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Delivery info -->
+          <div class="pd-delivery">
+            <div class="pd-del-row"><span>Pickup from our Morton Grove kitchen</span></div>
+            <div class="pd-del-row"><span>Baked fresh to order</span></div>
+            <div class="pd-del-row"><span>Order ahead — we'll confirm by email</span></div>
+          </div>
+
+          <!-- Order Form -->
+          <div class="pd-actions order-form" id="order-form-cookiescream">
+            <div class="form-magic form-magic-sm">
+              <div class="cookie-illust">
+                <div class="steam-wrap">
+                  <div class="steam steam-1"></div>
+                  <div class="steam steam-2"></div>
+                  <div class="steam steam-3"></div>
+                </div>
+                <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="55" cy="58" r="42" fill="#D6C9BB"/>
+                  <circle cx="55" cy="58" r="42" fill="none" stroke="#B5A392" stroke-width="2.5" opacity=".55"/>
+                  <ellipse cx="52" cy="49" rx="17" ry="9" fill="#8A5A38" opacity=".92" transform="rotate(-14 52 49)"/>
+                  <ellipse cx="36" cy="70" rx="6" ry="4.5" fill="#2F2A28" opacity=".9" transform="rotate(20 36 70)"/>
+                  <ellipse cx="70" cy="73" rx="5.5" ry="4" fill="#2F2A28" opacity=".88" transform="rotate(-16 70 73)"/>
+                  <ellipse cx="74" cy="46" rx="4.5" ry="3.5" fill="#2F2A28" opacity=".85"/>
+                  <ellipse cx="38" cy="41" rx="4" ry="3" fill="#2F2A28" opacity=".8"/>
+                  <circle cx="57" cy="70" r="3.4" fill="#FFFDF8"/>
+                  <circle cx="29" cy="56" r="2.8" fill="#FFFDF8"/>
+                  <circle cx="64" cy="60" r="3" fill="#A9714A"/>
+                  <circle cx="46" cy="61" r="2.4" fill="#A9714A"/>
+                  <circle cx="88" cy="38" r="14" fill="var(--blush)"/>
+                </svg>
+                <div class="crumb-field">
+                  <div class="crumb crumb-1"></div>
+                  <div class="crumb crumb-2"></div>
+                  <div class="crumb crumb-3"></div>
+                </div>
+              </div>
+              <div class="fresh-badge"><span class="fresh-badge-dot" style="background:var(--green);"></span>Now Taking Orders</div>
+            </div>
+            <div class="order-form-header">
+              <div class="order-form-tag">New Drop</div>
+              <div class="order-form-title">Order your Cookies &amp; Cream Tin</div>
+              <p class="order-form-desc">Fill in your details below and we'll confirm your pickup time by email.</p>
+            </div>
+            <div class="steps">
+              <div class="step"><span class="step-num">1</span> Order</div>
+              <div class="step"><span class="step-num">2</span> We confirm</div>
+              <div class="step"><span class="step-num">3</span> Pay &amp; pickup</div>
+            </div>
+            <div class="fg two">
+              <div>
+                <label class="fl" for="gf-cc-name">Your Name</label>
+                <input class="fi" id="gf-cc-name" type="text" placeholder="Jane Doe" required>
+              </div>
+              <div>
+                <label class="fl" for="gf-cc-phone">Phone Number</label>
+                <input class="fi" id="gf-cc-phone" type="tel" placeholder="(312) 555-1234" required>
+              </div>
+            </div>
+            <div class="fg two">
+              <div>
+                <label class="fl" for="gf-cc-date">Preferred Order Date</label>
+                <input class="fi" id="gf-cc-date" type="date" style="cursor:pointer;">
+              </div>
+              <div>
+                <label class="fl" for="gf-cc-comments">Additional Comments</label>
+                <input class="fi" id="gf-cc-comments" type="text" placeholder="Special requests, quantity, etc.">
+              </div>
+            </div>
+            <button class="fsub" onclick="submitGoogleForm('gf-cc','Cookies &amp; Cream Tin ($35.00)')">Place Your Order — $35</button>
+            <p class="zelle-note">We'll confirm your order and pickup time by email, then send Zelle details before pickup in Morton Grove.</p>
+          </div>
+
+          <!-- Single accordion: Storage tips -->
+          <div class="accord">
+            <div class="ac-item">
+              <button class="ac-btn" onclick="toggleAcc(this)">
+                Storage &amp; Serving Tips
+                <svg class="ac-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="ac-body"><div class="ac-content">
+                Best enjoyed fresh the day of pickup — gently warm a cookie for 10–15 seconds to melt the chocolate back down. Keep the tin covered at room temperature for up to 2 days, or refrigerate to keep it longer.
+              </div></div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  <!-- FEATURE CARDS — why it hits different -->
+  <section class="pd-features">
+    <div class="pd-feat-eyebrow rv">Why it hits different</div>
+    <h2 class="pd-feat-heading rv d1">Made the right way,<br><em>every single time.</em></h2>
+    <div class="pd-feat-grid">
+      <div class="pd-feat-card rv">
+        <span class="pd-feat-icon">🧈</span>
+        <div class="pd-feat-title">Real Butter Only</div>
+        <p class="pd-feat-body">No substitutes, no shortcuts. Unsalted real butter in every batch — you taste the difference from the first bite.</p>
+      </div>
+      <div class="pd-feat-card rv d1">
+        <span class="pd-feat-icon">🖤</span>
+        <div class="pd-feat-title">Cookies In The Cookie</div>
+        <p class="pd-feat-body">Crushed cookies-and-cream folded right through the dough, with white chocolate and a melted milk chocolate top on every single one.</p>
+      </div>
+      <div class="pd-feat-card rv d2">
+        <span class="pd-feat-icon">📦</span>
+        <div class="pd-feat-title">The Tin You Keep</div>
+        <p class="pd-feat-body">Our branded CozyTin is more than packaging — it's reusable, sturdy, and built to last. Keep it on your shelf or pass it on full.</p>
+      </div>
+      <div class="pd-feat-card rv d3">
+        <span class="pd-feat-icon">🏙️</span>
+        <div class="pd-feat-title">Local &amp; Homemade</div>
+        <p class="pd-feat-body">We don't ship nationwide — pickup is part of the experience. Fresh from our Morton Grove kitchen, straight to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER QUOTE + SPECS — black section -->
+  <section class="pd-quote-s">
+    <div class="pd-quote-inner rv">
+      <span class="pd-quote-mark">"</span>
+      <blockquote class="pd-quote-text">Made from scratch. Baked with love.<br>That's the whole point.</blockquote>
+      <cite class="pd-quote-by">— Hamnah · CozyTin, Est. 2025</cite>
+    </div>
+    <div class="pd-specs-row rv d1">
+      <div class="pd-spec-item"><span class="pd-spec-v">$35</span><span class="pd-spec-l">Per Tin</span></div>
+      <div class="pd-spec-item"><span class="pd-spec-v">Pickup</span><span class="pd-spec-l">Morton Grove</span></div>
+      <div class="pd-spec-item"><span class="pd-spec-v">Scratch</span><span class="pd-spec-l">Every Batch</span></div>
+      <div class="pd-spec-item"><span class="pd-spec-v">🖤</span><span class="pd-spec-l">New Drop</span></div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="pd-cta-band">
+    <div class="pd-cta-inner rv">
+      <h2 class="pd-cta-h">Order your tin<br><em>today.</em></h2>
+      <p class="pd-cta-p">The Cookies &amp; Cream Tin is our newest drop — baked fresh from scratch and ready for pickup in Morton Grove.</p>
+      <button class="btn-p" style="max-width:380px;margin:0 auto;width:100%;padding:17px 28px;font-size:15px;font-weight:800;border-radius:14px;" onclick="document.getElementById('order-form-cookiescream').scrollIntoView({behavior:'smooth'})">Order Now — $35</button>
+    </div>
+  </section>
+  </div>
+
+  <!-- GIFT SECTION -->
+  <section class="gift-section">
+    <div class="gift-inner">
+      <div class="gift-eyebrow rv">The perfect gift</div>
+      <h2 class="gift-heading rv">More than cookies —<br><em>it's a whole vibe.</em></h2>
+      <p class="gift-sub rv">A warm tin of fresh-baked treats says more than any card ever could. Perfect for every occasion — or no occasion at all.</p>
+      <div class="gift-cards">
+        <div class="gift-card rv">
+          <div class="gift-card-icon">🎂</div>
+          <div class="gift-card-title">Birthdays</div>
+          <p class="gift-card-body">Skip the generic cake. Show up with a Cookies &amp; Cream Tin — they'll never forget it.</p>
+        </div>
+        <div class="gift-card rv d1">
+          <div class="gift-card-icon">🎁</div>
+          <div class="gift-card-title">Holidays & Celebrations</div>
+          <p class="gift-card-body">Eid, Christmas, Thanksgiving, housewarming — a CozyTin is the gift that always fits.</p>
+        </div>
+        <div class="gift-card rv d2">
+          <div class="gift-card-icon">💛</div>
+          <div class="gift-card-title">Just Because</div>
+          <p class="gift-card-body">No reason needed. Surprise someone you love with a fresh tin — because they deserve it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ftop">
+      <div>
+        <img src="images/white-logo.png" alt="CozyTin" class="footer-logo-img">
+        <p class="fdesc">Homemade cookie tins baked from scratch in Morton Grove, IL. Made with real ingredients and lots of love.</p>
+      </div>
+      <div>
+        <div class="fcol-t">Navigate</div>
+        <div class="flinks">
+          <button class="flink" onclick="goPage('home')">Home</button>
+          <button class="flink" onclick="goPage('about')">Our Story</button>
+          <button class="flink" onclick="goPage('cookiescream')" style="color:rgba(255,255,255,.75)">Cookies &amp; Cream Tin</button>
         </div>
       </div>
       <div>
